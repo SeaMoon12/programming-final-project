@@ -5,6 +5,8 @@ class Minigames:
         print('running game hangman')
     def wordle(self):
         print('running game wordle')
+    def numbrle(self):
+        print('running game numbrle')
     def scramble(self):
         print('running game scramble')
     def anagram(self):

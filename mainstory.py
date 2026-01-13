@@ -6,7 +6,7 @@ import os
 # This will be the main storyline, choices that do not depend on the character chosen
 class Story:
     def __init__(self):
-        self.all_locations = ['foyer', 'study', 'bedroom', 'kitchen', 'library']
+        self.all_locations = ['foyer', 'study', 'bedroom', 'library', 'kitchen']
         self.visited_locations = ['foyer']
         self.current_location = ''
         self.items = []
@@ -56,9 +56,13 @@ class Story:
         self.current_location = 'study'
 
         print('''
-    LOCATION: The Study
-        ...
-        ''')
+    LOCATION: The Private Study
+        Walking into the study, you see a half-full brandy glass smelling of Bitter Almonds (Arsenic)
+        and a shredded Will that would have left Arthur with absolutely nothing. Rummaging through
+        the drawers of the desk, you found a black box which appears to be a Safe.
+
+    PRESS ENTER TO CONTINUE''')
+        input('')
 
 # BEDROOM
     def bedroom(self):
@@ -67,10 +71,21 @@ class Story:
 
         print('''
     LOCATION: The Master Bedroom
-        ...
+        Upon entering the bedroom, you see a packed suitcase and a one-way ticket to Paris on the floor,
+        beside the bed. On the bed, you see a blackmail letter from Arthur to Elara about her secret lover.
+        Across from the packed suitcase, on the other side of the bed, is something small... Something red...
+        As you move closer, you find...
 
-        Which room do you want to investigate?
-        ''')
+    PRESS ENTER TO CONTINUE''')
+        input('')
+
+        minigames.Minigames().wordle()
+
+        print('''
+        A Bloody Letter Opener
+
+    PRESS ENTER TO CONTINUE''')
+        input('')
 
 # KITCHEN
     def kitchen(self):
@@ -90,9 +105,16 @@ class Story:
 
         print('''
     LOCATION: The Library
+        Stepping into the library, you browse through all the books available when you stumble upon a photo.
+        It turns out that Elara had a secret lover: The Lawyer. Her husband had not known anything about this.
+        After going through several book isles, you found a marriage contract between Alistair and his wife.
+        It says that if Elara ever had a divorce with him, Elara would lose everything. While sitting on the
+        couch, you saw something in the corner of your eye.
 
-        Which room do you want to investigate?
-        ''')
+    PRESS ENTER TO CONTINUE''')
+        input('')
+
+        minigames.Minigames().hangman()
 
 # NURSERY
     def nursery(self):
@@ -144,7 +166,6 @@ class Story:
             case 'nursery': self.nursery()
 
     def accuse(self):
-        os.system('cls')
         can_accuse = False
         choice = ''
 
@@ -155,6 +176,7 @@ class Story:
             else:
                 can_accuse = True
         if can_accuse == True:
+            os.system('cls')
             while choice != 'y' or 'n':
                 choice = input('Would you like to accuse now? (y/n)')
                 if choice == 'y':

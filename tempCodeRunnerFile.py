@@ -1,2 +1,1 @@
-
-            Difficulty      : Easy
+Whisperer
