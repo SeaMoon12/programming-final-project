@@ -9,21 +9,21 @@ class Main:
     def character_selection(self):
         while True:
             char_choice = input('''
-Who do you want to play as?
-1. The Paranormal
-    Difficulty      : Easy
-    Unique Ability  : Spirit Whisperer
-    Receives cryptic, fragmented messages from Alistair's ghost
+    Who do you want to play as?
+        1. The Paranormal
+            Difficulty      : Easy
+            Unique Ability  : Spirit Whisperer
+            Receives cryptic, fragmented messages from Alistair's ghost
 
-2. The Detective
-    Difficulty      : Medium
-    Unique Ability  : Authority Check?
-    ???
+        2. The Detective
+            Difficulty      : Medium
+            Unique Ability  : Authority Check?
+            ???
 
-3. The Buyer
-    Difficulty      : Hard
-    Unique Ability  : Blueprint Access
-    Can find secret passages and evaluate the layout of the manor
+        3. The Buyer
+            Difficulty      : Hard
+            Unique Ability  : Blueprint Access
+            Can find secret passages and evaluate the layout of the manor
 ''').lower()
             if char_choice == 'paranormal' or char_choice ==  'the paranormal' or char_choice ==  '1':
                 self.story = character_story.StoryParanormal()

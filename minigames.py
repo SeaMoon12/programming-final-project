@@ -2,14 +2,14 @@ class Minigames:
     def __init__(self):
         pass
     def hangman(self):
-        pass
+        print('running game hangman')
     def wordle(self):
-        pass
+        print('running game wordle')
     def scramble(self):
-        pass
+        print('running game scramble')
     def anagram(self):
-        pass
+        print('running game anagram')
     def cryptic(self):
-        pass
+        print('running game cryptic')
     def riddles(self):
-        pass
+        print('running game riddles')

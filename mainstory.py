@@ -1,3 +1,5 @@
+import minigames
+
 from termcolor import colored
 import os
 
@@ -15,11 +17,18 @@ class Story:
         os.system('cls')
 
         print('''
-        Setting: Blackwood Manor, the night after Lord Alistair Blackwood is found dead in a locked study.
-        The Conflict: Alistair was hours away from disinheriting his family to fund an orphanage.
-        The Objective: Identify the killer before the police arrive.
+    Newspaper from 2010
+        
+        The Victim: Lord Alistair Blackwood (72).
+        The Discovery: Found by the Maid at 6:00 AM in his locked Study.
+        Police Assumption: A "Crime of Passion." Alistair was stabbed once in the neck with a letter opener (later found to be missing).
+        The Suspects' Alibis:
+            - Arthur (Son): Claims he was at the local casino (witnesses confirmed he was there, but he left for an "hour of air" at 3:00 AM).
+            - Elara (Wife): Claims she was asleep in her room. No witnesses.
+            - Lily (Granddaughter): Only 10 at the time; police ruled her out immediately as "physically incapable."
+        The Conclusion: Case closed due to "Lack of Evidence." The estate was tied up in legal battles until you bought it.
 
-        PRESS ENTER TO CONTINUE
+    PRESS ENTER TO CONTINUE
         ''')
         input('')
         self.foyer()
@@ -31,11 +40,15 @@ class Story:
 
         print('''
     LOCATION: The Grand Foyer
-        In front of you lies The Will: A document on the table stating the estate goes to "The St. Jude Orphanage"
-        tomorrow and The Argument Log: A servant’s diary noting a "violent shouting match" between Alistair and Arthur.
+        As you stand before the giant door, you thought why nobody wanted this place. Walking into the room, you find two objects that immediately stand out before the rest:
+            1. A rusted walking cane with a heavy gold top that belonged to Arthur
+            2. An 8-year-old eviction notice Alistair wrote addressed to Arthur
+        But you notice something... something that stands out more than the two objects...
 
-        Which room do you want to investigate?
-        ''')
+    PRESS ENTER TO CONTINUE''')
+        input('')
+
+        minigames.Minigames().anagram()
 
 # STUDY
     def study(self):
@@ -96,9 +109,12 @@ class Story:
         loc_wo_cur = self.all_locations.copy()
         loc_wo_cur.remove(self.current_location)
 
+        print('''    Where would you like to investigate next?
+        ''')
+
         # Print locations
         for location in loc_wo_cur:
-            print(f'{loc_wo_cur.index(location)+1}. {location.capitalize()}')
+            print(f'        {loc_wo_cur.index(location)+1}. {location.capitalize()}')
 
         while True:
             room = input('').lower()
