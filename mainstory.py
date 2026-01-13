@@ -1,9 +1,10 @@
+from termcolor import colored
 import os
 
 # This will be the main storyline, choices that do not depend on the character chosen
 class Story:
     def __init__(self):
-        self.all_locations = ['library', 'suite', 'nursery']
+        self.all_locations = ['study', 'bathroom', 'games room']
         self.location_visited = []
         self.items = []
 
@@ -32,21 +33,32 @@ class Story:
         self.path() # We will not include this line in this file, but in the character_story.py file
 
     def path(self):
-        counter = 1
-        for location in self.all_locations:
-            if location not in self.location_visited and len(self.location_visited) != 3:
-                print(f'''{counter}. {location}''')
-                counter += 1
+        not_vis_locs = []
 
+        # Print available locations
+        for location in self.all_locations:
+            if location not in self.location_visited:
+                not_vis_locs.append(location)
+        for location in not_vis_locs:
+            print(f'{not_vis_locs.index(location) + 1}. {location.capitalize()}')
+
+        # Input constraints
         while True:
             room = input('').lower()
+
+            # Handled number inputs - Change number to room name
+            for i in range(len(not_vis_locs)):
+                if room == str(i+1):
+                    room = not_vis_locs[i]
+
             if room in self.all_locations and room not in self.location_visited:
                 self.location_visited.append(room)
+                print(f'Entered {room}')
                 self.enter_room(room)
             elif room in self.location_visited:
-                print(f'You have already visited {room}. Please choose another room.')
+                print(f'You have already visited {room.capitalize()}. Please choose another room.')
             else:
-                print('Invalid room. Please try again.')
+                print(colored('Invalid room. Please try again.','red'))
 
     def enter_room(self, room):
         pass

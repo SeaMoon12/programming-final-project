@@ -1,3 +1,4 @@
+from termcolor import colored
 import os
 import character_story
 
@@ -37,8 +38,8 @@ Who do you want to play as?
                 self.story = character_story.StoryBuyer()
                 break
             else:
-                print('''Invalid character. Please try again.''')
                 os.system('cls')
+                print(colored('Invalid character. Please try again.', 'red'))
 
 
 if __name__ == "__main__":
