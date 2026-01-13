@@ -3,6 +3,10 @@ import os
 # This will be the main storyline, choices that do not depend on the character chosen
 class Story:
     def __init__(self):
+        self.all_locations = ['library', 'suite', 'nursery']
+        self.location_visited = []
+        self.items = []
+
         self.introduction()
         
     def introduction(self):
@@ -11,11 +15,11 @@ class Story:
         The Conflict: Alistair was hours away from disinheriting his family to fund an orphanage.
         The Objective: Identify the killer before the police arrive.
 
-        CLICK ENTER TO CONTINUE
+        PRESS ENTER TO CONTINUE
         ''')
         input('')
         os.system('cls')
-        self.foyer()
+        self.foyer() # We will not include this line in this file, but in the character_story.py file
 
     def foyer(self):
         print('''
@@ -25,16 +29,26 @@ class Story:
 
         Which room do you want to investigate first?
         ''')
-        self.path()
+        self.path() # We will not include this line in this file, but in the character_story.py file
 
     def path(self):
-        all_locations = ['library', 'suite', 'nursery']
-        location_visited = ['library', 'suite']
         counter = 1
-        for location in all_locations:
-            if location not in location_visited and len(location_visited) != 3:
+        for location in self.all_locations:
+            if location not in self.location_visited and len(self.location_visited) != 3:
                 print(f'''{counter}. {location}''')
                 counter += 1
 
         while True:
             room = input('').lower()
+            if room in self.all_locations and room not in self.location_visited:
+                self.location_visited.append(room)
+                self.enter_room(room)
+            elif room in self.location_visited:
+                print(f'You have already visited {room}. Please choose another room.')
+            else:
+                print('Invalid room. Please try again.')
+
+    def enter_room(self, room):
+        pass
+        # if room == '...':
+            # room()
