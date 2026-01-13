@@ -24,8 +24,8 @@ class Story:
         input('')
         self.foyer()
 
+# FOYER
     def foyer(self):
-        # What needs to be done at the start
         os.system('cls')
         self.current_location = 'foyer'
 
@@ -36,37 +36,61 @@ class Story:
 
         Which room do you want to investigate?
         ''')
-        self.path() # We will not include this line in this file, but in the character_story.py file
 
+# STUDY
     def study(self):
         os.system('cls')
         self.current_location = 'study'
 
-        self.path()
+        print('''
+    LOCATION: The Study
+        ...
+        ''')
 
+# BEDROOM
     def bedroom(self):
         os.system('cls')
         self.current_location = 'bedroom'
 
-        self.path()
+        print('''
+    LOCATION: The Master Bedroom
+        ...
 
+        Which room do you want to investigate?
+        ''')
+
+# KITCHEN
     def kitchen(self):
         os.system('cls')
         self.current_location = 'kitchen'
 
-        self.path()
+        print('''
+    LOCATION: The Kitchen
 
+        Which room do you want to investigate?
+        ''')
+
+# LIBRARY
     def library(self):
         os.system('cls')
         self.current_location = 'library'
 
-        self.path()
+        print('''
+    LOCATION: The Library
 
+        Which room do you want to investigate?
+        ''')
+
+# NURSERY
     def nursery(self):
         os.system('cls')
         self.current_location = 'nursery'
 
-        self.path()
+        print('''
+    LOCATION: The Nursery
+
+        Which room do you want to investigate?
+        ''')
 
     def path(self):
         loc_wo_cur = self.all_locations.copy()
