@@ -26,15 +26,12 @@ Who do you want to play as?
     Can find secret passages and evaluate the layout of the manor
 ''').lower()
             if char_choice == 'paranormal' or char_choice ==  'the paranormal' or char_choice ==  '1':
-                os.system('cls')
                 self.story = character_story.StoryParanormal()
                 break
             elif char_choice == 'detective' or char_choice == 'the detective' or char_choice == '2':
-                os.system('cls')
                 self.story = character_story.StoryDetective()
                 break
             elif char_choice == 'buyer' or char_choice == 'the buyer' or char_choice == '3':
-                os.system('cls')
                 self.story = character_story.StoryBuyer()
                 break
             else:
