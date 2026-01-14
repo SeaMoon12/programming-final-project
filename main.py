@@ -39,8 +39,8 @@ class Main:
 
         2. The Private Investigator
             Difficulty      : Medium
-            Unique Ability  : Authority Check?
-            ???
+            Unique Ability  : Authority Check
+            Able to check the truth of one clue (can only be used once)
 
         3. The Buyer
             Difficulty      : Hard

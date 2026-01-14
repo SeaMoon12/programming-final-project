@@ -1,6 +1,7 @@
 import random
 import sys
 import time
+from termcolor import colored
 
 import settings
 
@@ -25,6 +26,7 @@ def print(*args, **kwargs):
 class Minigames:
     def __init__(self):
         pass
+    
     def hangman(self):
         print('running game hangman')
         succeed = input('y/n')
@@ -49,21 +51,22 @@ class Minigames:
         elif succeed == 'n':
             return False
 
-    def scramble(self):
-        print('running game scramble')
-        succeed = input('y/n')
-        if succeed == 'y':
-            return True
-        elif succeed == 'n':
-            return False
-
     def anagram(self):
-        print('running game anagram')
-        succeed = input('y/n')
-        if succeed == 'y':
-            return True
-        elif succeed == 'n':
-            return False
+        print('''        Turn these letters to make new existing word: A-S-T-U-T-E-R.
+        You only have 5 chances to guess the word, if you  fail  you  won't  be
+        able to obtain the clue.Think wisely before answering, the fate  is  in
+        your hand
+        ''')
+
+        answer= input("Write your answer: ").lower()
+
+        for chances in range(4):
+            if answer == "stature":
+                print('CORRECT')
+                return True
+            elif answer != "stature":
+                answer = input(colored('The answer is still incorrect, try again:\n','red'))
+        return False
 
     def cryptic(self):
         print('running game cryptic')
@@ -72,7 +75,7 @@ class Minigames:
             return True
         elif succeed == 'n':
             return False
-            
+
     def riddles(self):
         print('running game riddles')
         succeed = input('y/n')

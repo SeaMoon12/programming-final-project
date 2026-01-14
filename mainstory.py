@@ -198,24 +198,52 @@ class Story:
         A detailed dollhouse sits in the center. Dead butterflies  are  pinned
         to the walls with surgical precision.
 
-    PRESS ENTER TO CONTINUE''')
+    PRESS ENTER TO CONTINUE\n''')
 
-        SELF.display_actions()
+        self.display_actions()
 
 # == ACTIONS ==
     def search(self):
         self.searches -= 1
         match self.current_location:
+
+    # FOYER
             case 'foyer':
                 print('''        A dark, brownish spray patterns the peeling wallpaper near the  stairs.
         It feels like a silent scream frozen in time.
         \n    PRESS ENTER TO CONTINUE''')
                 input('')
                 return minigames.Minigames().anagram()
-            case 'study': return minigames.Minigames().numbrle()
-            case 'bedroom': return minigames.Minigames().wordle()
-            case 'library': return minigames.Minigames().hangman()
+
+    # STUDY
+            case 'study':
+                print('''        Behind the chair is another wall-vent. It sits at the exact level  of a
+        seated man’s neck. A nearby floor safe remains the only  locked  secret
+        left.
+        \n    PRESS ENTER TO CONTINUE\n''')
+                input('')
+                return minigames.Minigames().numbrle()
+
+    # BEDROOM
+            case 'bedroom':
+                print('''        A floorboard near the vanity is loose. A faint, greasy smear marks  the
+        edge.
+        \n    PRESS ENTER TO CONTINUE''')
+                input('')
+                return minigames.Minigames().wordle()
+
+    # LIBRARY
+            case 'library':
+                print('''        A rectangular iron wall-vent sits low behind the desk. The floor in
+        front of it is polished clean, as if by many passing bodies.
+        \n    PRESS ENTER TO CONTINUE''')
+                input('')
+                return minigames.Minigames().hangman()
+
+    # KITCHEN
             case 'kitchen': return minigames.Minigames().riddles()
+
+    # NURSERY
             case 'nursery': return minigames.Minigames().cryptic()
 
 # == BTS ==

@@ -52,12 +52,22 @@ class StoryParanormal(mainstory.Story):
     def study(self):
         super().study()
 
-        print('''        Despite trying so hard to find the combination, you could not find the right combination.
-        You hear a whisper like a wind
-
-            tea... tasted... sleep...
+        if self.mini_result == True:
+            print('''
+        You examine the vent slats. They are bent outward. You  crack  the  safe
+        You sit in the chair. Suddenly, you can't move.  Your  limbs  are  lead.
+        You hear a click from the wall behind you. "I'm  fixing  you,  Grandpa."
+        You find a Boarding School Brochure  inside  the  safe—Alistair’s  death
+        warrant.
         \n    PRESS ENTER TO CONTINUE''')
-        input('')
+            input('')
+        else:
+            print('''
+        The safe jams. You stare at the vent behind the chair, and for a  second,
+        you see a pair of unblinking eyes watching you. You are not alone in this
+        room.
+        \n    PRESS ENTER TO CONTINUE''')
+            input('')
 
         self.display_rooms()
 
@@ -65,12 +75,21 @@ class StoryParanormal(mainstory.Story):
     def bedroom(self):
         super().bedroom()
 
-        print('''
-        As you take a closer look, you hear a faint voice...
-        
-            Staged... all... staged...
+        if self.mini_result == True:
+            print('''
+        You hear Elara’s sobbing. "I didn't do it! I only wanted him to  sleep!"
+        You reach under the board and  find  a  bloody  letter  opener. But  the
+        blood feels... wrong. It’s a stage prop, meant to be found.
+
         \n    PRESS ENTER TO CONTINUE''')
-        input('')
+            input('')
+        else:
+            print('''
+        A shower of plaster dust falls from the ceiling. You pull your hand back.
+        The darkness under the floor seems to grow teeth. You  leave  the  secret
+        buried.
+        \n    PRESS ENTER TO CONTINUE''')
+            input('')
 
         self.display_rooms()
 
@@ -81,20 +100,48 @@ class StoryParanormal(mainstory.Story):
 
     # LIBRARY
     def library(self):
-        super().kitchen()
+        super().library()
+
+        if self.mini_result == True:
+            print('''
+        You hear the sound of small, frantic  breathing  inside  the  wall. "The
+        walls have eyes... and I am the eyes." You  reach  in  and  pull  out  a
+        strand of white silk. It feels like spiderweb, but it's from  a  child's
+        dress.
+        \n    PRESS ENTER TO CONTINUE''')
+            input('')
+        else:
+            print('''
+        A low hiss echoes from the duct. You recoil, and the iron grate seems  to
+        fuse shut. The house refuses to show you its veins.
+        \n    PRESS ENTER TO CONTINUE''')
+            input('')
+
         self.display_rooms()
 
 class StoryPrivateInvestigator(mainstory.Story):
+    def __init__(self):
+        super().__init__()
+        self.special_use = settings.investigator_searches
+
     # FOYER
     def foyer(self):
         super().foyer()
 
-        print('''
-        As you gaze on the wall, you find a low blood splatter.
-        You use your tools and find a size 9 boot print in the dust.
-        Coincidentally, size 9 is the same size as Arthur's foot.
+        if self.mini_result == True:
+            print('''
+        You click your pen, measuring the arc of the spray. "Physics don't lie,"
+        you mutter. The height is exactly 36 inches. Arthur  is  a  head  taller
+        than his father. Whoever caused this splatter was either very  short  or
+        positioned in the shadows.
         \n    PRESS ENTER TO CONTINUE''')
-        input('')
+            input('')
+        else:
+            print('''
+        The shadows dance, mocking your  eyes. The  stain  is  just  a  stain, a
+        senseless blotch on a ruined house.
+        \n    PRESS ENTER TO CONTINUE''')
+            input('')
 
         self.display_rooms()
     
@@ -102,19 +149,43 @@ class StoryPrivateInvestigator(mainstory.Story):
     def study(self):
         super().study()
 
-        minigames.Minigames().numbrle()
-
-        print('''
-        After cracking the combination to the safe, you find a book that reads 'A Poisoner's Guide'.
-        You thought, "maybe Elara used this to poison Alistair."
+        if self.mini_result == True:
+            print('''
+        You examine the vent slats. They are bent outward. You  crack  the  safe
+        and find architectural sketches of the vent system, drawn in crayon. The
+        murder was committed from inside the wall while the victim was  sedated.
         \n    PRESS ENTER TO CONTINUE''')
-        input('')
+            input('')
+        else:
+            print('''
+        The safe jams. You stare at the vent behind the chair, and for a  second,
+        you see a pair of unblinking eyes watching you. You are not alone in this
+        room.
+        \n    PRESS ENTER TO CONTINUE''')
+            input('')
 
         self.display_rooms()
 
     # BEDROOM
     def bedroom(self):
         super().bedroom()
+
+        if self.mini_result == True:
+            print('''
+        You pull up the board. You find the letter opener  and  Arthur’s  bloody
+        IOU. It’s too perfect. "A frame-up,"  you  mutter. You  find  a  Size  4
+        footprint in the dust beneath the floorboards.
+
+        \n    PRESS ENTER TO CONTINUE''')
+            input('')
+        else:
+            print('''
+        A shower of plaster dust falls from the ceiling. You pull your hand back.
+        The darkness under the floor seems to grow teeth. You  leave  the  secret
+        buried.
+        \n    PRESS ENTER TO CONTINUE''')
+            input('')
+
         self.display_rooms()
 
     # KITCHEN
@@ -126,14 +197,20 @@ class StoryPrivateInvestigator(mainstory.Story):
     def library(self):
         super().library()
 
-        print('''
-        After close inspection upon the walls of the library, you find a strand
-        of long, blonde hair, caught in the grate of the ventilation. It belongs
-        to Elara, Alistair's wife. It looks like she was spying on something...
-        or someone...
+        if self.mini_result == True:
+            print('''
+        You hear the sound of small, frantic  breathing  inside  the  wall. "The
+        You shine your light into the duct. The dust has been disturbed by small
+        hands and knees. You find a Size 4 glove snagged on a bolt. This isn't a
+        vent; it's a highway for a ghost that breathes.
         \n    PRESS ENTER TO CONTINUE''')
-
-        input('')
+            input('')
+        else:
+            print('''
+        A low hiss echoes from the duct. You recoil, and the iron grate seems  to
+        fuse shut. The house refuses to show you its veins.
+        \n    PRESS ENTER TO CONTINUE''')
+            input('')
 
         self.display_rooms()
 
@@ -141,17 +218,20 @@ class StoryBuyer(mainstory.Story):
     # FOYER
     def foyer(self):
         super().foyer()
-        print('''
-        As you gaze on the wall, you find yourself trembling at the sight of
 
-            a low BLOOD splatter
-
-        As you pull out your blueprint, you notice something missing from the room: A hidden step-stool nook.
-
-            "Why would anyone need a stool here?", you thought
+        if self.mini_result == True:
+            print('''
+        You consult the tattered blueprint. There’s a hollow space in the wall —
+        a step-stool nook.  You  realize  someone  small  stood  here  to  watch
+        the argument, or perhaps to participate in it.
         \n    PRESS ENTER TO CONTINUE''')
-
-        input('')
+            input('')
+        else:
+            print('''
+        The shadows dance, mocking your  eyes. The  stain  is  just  a  stain, a
+        senseless blotch on a ruined house.
+        \n    PRESS ENTER TO CONTINUE''')
+            input('')
 
         self.display_rooms()
 
@@ -159,16 +239,45 @@ class StoryBuyer(mainstory.Story):
     def study(self):
         super().study()
 
-        print('''        Despite trying so hard to find the combination, you could not find the right combination.
-        You pulled out the blueprint and after close inspection and comparison, the blueprint seems
-        to show a hidden crawlspace directly above the desk chair.
+        if self.mini_result == True:
+            print('''
+        You consult the tattered blueprint. There’s a hollow space in the wall —
+        You open the safe using  the  code  from  the  blueprint.  Inside  is  a
+        Disinheritance Deed. Arthur was going to be homeless; Lily was going  to
+        be locked away. Both had a reason to want him dead, but only one had the
+        map.
         \n    PRESS ENTER TO CONTINUE''')
-        input('')
+            input('')
+        else:
+            print('''
+        The safe jams. You stare at the vent behind the chair, and for a  second,
+        you see a pair of unblinking eyes watching you. You are not alone in this
+        room.
+        \n    PRESS ENTER TO CONTINUE''')
+            input('')
+
         self.display_rooms()
 
     # BEDROOM
     def bedroom(self):
         super().bedroom()
+
+        if self.mini_result == True:
+            print('''
+        You find the letter opener. According to your blueprint, this floorboard
+        is directly above a vent junction. Someone dropped this  here  from  the
+        Library to ensure Elara would take the fall.
+
+        \n    PRESS ENTER TO CONTINUE''')
+            input('')
+        else:
+            print('''
+        A shower of plaster dust falls from the ceiling. You pull your hand back.
+        The darkness under the floor seems to grow teeth. You  leave  the  secret
+        buried.
+        \n    PRESS ENTER TO CONTINUE''')
+            input('')
+
         self.display_rooms()
 
     # KITCHEN
@@ -179,6 +288,26 @@ class StoryBuyer(mainstory.Story):
     # LIBRARY
     def library(self):
         super().library()
+
+        if self.mini_result == True:
+            print('''
+        You hear the sound of small, frantic  breathing  inside  the  wall. "The
+        The blueprint reveals the truth: this vent connects the Library directly
+        to the Study chair. You find a small latch on  the  inside. Someone  was
+        moving through your house like a parasite.
+        \n    PRESS ENTER TO CONTINUE''')
+            input('')
+
+            self.all_locations.append('nursery')
+
+            print(colored('You now have access to the Nursery\n', 'green'))
+        else:
+            print('''
+        A low hiss echoes from the duct. You recoil, and the iron grate seems  to
+        fuse shut. The house refuses to show you its veins.
+        \n    PRESS ENTER TO CONTINUE''')
+            input('')
+
         self.display_rooms()
 
     # NURSERY
