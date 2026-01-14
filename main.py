@@ -1,7 +1,28 @@
 from termcolor import colored
 import os
+import sys
+import time
 
+import settings
 import character_story
+
+def print(*args, **kwargs):
+    # Extract speed settings if provided, otherwise use defaults
+    speed = kwargs.pop('speed', settings.print_speed)
+    sep = kwargs.pop('sep', ' ')
+    end = kwargs.pop('end', '\n')
+    
+    # Combine all arguments into one string (mimicking standard print)
+    message = sep.join(map(str, args))
+    
+    for char in message:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(speed)
+    
+    # Print the ending (usually a newline)
+    sys.stdout.write(end)
+    sys.stdout.flush()
 
 class Main:
     def __init__(self):
@@ -9,7 +30,7 @@ class Main:
 
     def character_selection(self):
         while True:
-            char_choice = input('''
+            print('''
     Who do you want to play as?
         1. The Paranormal
             Difficulty      : Easy
@@ -25,11 +46,12 @@ class Main:
             Difficulty      : Hard
             Unique Ability  : Blueprint Access
             Can find secret passages and evaluate the layout of the manor
-''').lower()
+''')
+            char_choice = input('').lower()
             if char_choice == 'paranormal' or char_choice ==  'the paranormal' or char_choice ==  '1':
                 self.story = character_story.StoryParanormal()
                 break
-            elif char_choice == 'investigator' or char_choice == 'the investigator' or char_choice == '2' or char_choice == 'the private investigator':
+            elif char_choice == 'investigator' or char_choice == 'the investigator' or char_choice == '2' or char_choice == 'the private investigator' or char_choice == 'private investigator':
                 self.story = character_story.StoryPrivateInvestigator()
                 break
             elif char_choice == 'buyer' or char_choice == 'the buyer' or char_choice == '3':

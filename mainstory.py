@@ -1,7 +1,28 @@
 from termcolor import colored
 import os
+import sys
+import time
 
+import settings
 import minigames
+
+def print(*args, **kwargs):
+    # Extract speed settings if provided, otherwise use defaults
+    speed = kwargs.pop('speed', settings.print_speed)
+    sep = kwargs.pop('sep', ' ')
+    end = kwargs.pop('end', '\n')
+    
+    # Combine all arguments into one string (mimicking standard print)
+    message = sep.join(map(str, args))
+    
+    for char in message:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(speed)
+    
+    # Print the ending (usually a newline)
+    sys.stdout.write(end)
+    sys.stdout.flush()
 
 # This will be the main storyline, choices that do not depend on the character chosen
 class Story:
@@ -9,10 +30,15 @@ class Story:
         self.all_locations = ['foyer', 'study', 'bedroom', 'library', 'kitchen']
         self.visited_locations = ['foyer']
         self.current_location = ''
-        self.items = []
+
+        self.mini_result = None
+
+        self.actions = ['continue', 'deep search']
+        self.searches = settings.searches
 
         self.introduction()
-        
+
+# Introduction
     def introduction(self):
         os.system('cls')
 
@@ -76,6 +102,7 @@ class Story:
         input('')
         self.foyer()
 
+# == ROOMS ==
 # FOYER
     def foyer(self):
         os.system('cls')
@@ -83,16 +110,16 @@ class Story:
 
         print('''
     LOCATION: The Grand Foyer
-        As you stand before the giant door, you thought why nobody wanted this place. Walking into
-        the room, you find two objects that immediately stand out before the rest:
-            1. A rusted walking cane with a heavy gold top that belonged to Arthur
-            2. An 8-year-old eviction notice Alistair wrote addressed to Arthur
-        But you notice something... something that stands out more than the two objects...
+        The heavy oak doors seal behind you with a thud that vibrates in  your
+        marrow. To your left, a heap of discarded yellow  envelopes  addressed
+        to Arthur spills from a rusted mail slot—stamped with the red  ink  of
+        "Final Notice." A shattered porcelain vase lies across the  floor, its
+        shards like jagged teeth.
 
     PRESS ENTER TO CONTINUE''')
         input('')
 
-        minigames.Minigames().anagram()
+        self.display_actions()
 
 # STUDY
     def study(self):
@@ -101,12 +128,14 @@ class Story:
 
         print('''
     LOCATION: The Private Study
-        Walking into the study, you see a half-full brandy glass smelling of Bitter Almonds (Arsenic)
-        and a shredded Will that would have left Arthur with absolutely nothing. Rummaging through
-        the drawers of the desk, you found a black box which appears to be a Safe.
+        Two porcelain teacups sit on the desk, the residue smelling of  bitter
+        almonds. A shredded Will lies in a heap of confetti.  The  high-backed
+        chair sits facing away from the door, towards the wall.
 
     PRESS ENTER TO CONTINUE''')
         input('')
+
+        self.display_actions()
 
 # BEDROOM
     def bedroom(self):
@@ -115,21 +144,14 @@ class Story:
 
         print('''
     LOCATION: The Master Bedroom
-        Upon entering the bedroom, you see a packed suitcase and a one-way ticket to Paris on the floor,
-        beside the bed. On the bed, you see a blackmail letter from Arthur to Elara about her secret lover.
-        Across from the packed suitcase, on the other side of the bed, is something small... Something red...
-        As you move closer, you find...
+        Moth-eaten curtains hang like flayed skin. A half-packed suitcase sits
+        open with a one-way ticket to Paris. You can feel the panic of a woman
+        who was ready to run.
 
     PRESS ENTER TO CONTINUE''')
         input('')
 
-        minigames.Minigames().wordle()
-
-        print('''
-        A Bloody Letter Opener
-
-    PRESS ENTER TO CONTINUE''')
-        input('')
+        self.display_actions()
 
 # KITCHEN
     def kitchen(self):
@@ -138,9 +160,16 @@ class Story:
 
         print('''
     LOCATION: The Kitchen
+        The scent of rosemary has been  replaced  by  the  stench  of  grease.
+        Moonlight reflects off stainless steel knives—all clean, all  present.
+        A liquor flask with Arthur's initials lies near a spilled sugar  bowl.
+        On the counter sits a burnt  menu  for  a  "Celebratory Dinner"  dated
+        the night of the murder.
 
-        Which room do you want to investigate?
-        ''')
+    PRESS ENTER TO CONTINUE''')
+        input('')
+
+        self.display_actions()
 
 # LIBRARY
     def library(self):
@@ -149,16 +178,14 @@ class Story:
 
         print('''
     LOCATION: The Library
-        Stepping into the library, you browse through all the books available when you stumble upon a photo.
-        It turns out that Elara had a secret lover: The Lawyer. Her husband had not known anything about this.
-        After going through several book isles, you found a marriage contract between Alistair and his wife.
-        It says that if Elara ever had a divorce with him, Elara would lose everything. While sitting on the
-        couch, you saw something in the corner of your eye.
+        Towering shelves lean inward like judges. A book on  'The  Biology  of
+        Predators' lies open. On the desk, a secret  lover’s  photograph  lies
+        face down, the lawyer’s smile curling in the dampness.
 
     PRESS ENTER TO CONTINUE''')
         input('')
 
-        minigames.Minigames().hangman()
+        self.display_actions()
 
     # NURSERY
     def nursery(self):
@@ -167,12 +194,64 @@ class Story:
 
         print('''
     LOCATION: The Nursery
+        The bookshelf slides back. The air is freezing and smells of lavender.
+        A detailed dollhouse sits in the center. Dead butterflies  are  pinned
+        to the walls with surgical precision.
 
-        Which room do you want to investigate?
+    PRESS ENTER TO CONTINUE''')
+
+        SELF.display_actions()
+
+# == ACTIONS ==
+    def search(self):
+        self.searches -= 1
+        match self.current_location:
+            case 'foyer':
+                print('''        A dark, brownish spray patterns the peeling wallpaper near the  stairs.
+        It feels like a silent scream frozen in time.
+        \n    PRESS ENTER TO CONTINUE''')
+                input('')
+                return minigames.Minigames().anagram()
+            case 'study': return minigames.Minigames().numbrle()
+            case 'bedroom': return minigames.Minigames().wordle()
+            case 'library': return minigames.Minigames().hangman()
+            case 'kitchen': return minigames.Minigames().riddles()
+            case 'nursery': return minigames.Minigames().cryptic()
+
+# == BTS ==
+# TECHNICALITIES
+    def display_actions(self):
+        print('''    What would you like to do?
         ''')
 
-# TECHNICALITIES
-    def path(self):
+        # Print actions
+        for actions in self.actions:
+            print(f'        {self.actions.index(actions)+1}. {actions.capitalize()}')
+
+        while True:
+            act_choice = input('\033[94m').lower() # \033[94m is bright blue
+            print('\033[0m', end='') # \033[0m is reset
+
+            for i in range(len(self.actions)):
+                if act_choice == str(i+1):
+                    act_choice = self.actions[i]
+
+            if act_choice in self.actions:
+                self.act(act_choice)
+                break
+            else:
+                print(colored(f'That is not an available action. Please choose another action.', 'red'))
+
+    def act(self, act):
+        match act:
+            case 'deep search': 
+                if self.searches <= 0:
+                    print(colored('Sorry, you have no more searches available.','red'))
+                else:
+                    self.mini_result = self.search()
+            case 'continue': self.display_rooms()
+
+    def display_rooms(self):
         loc_wo_cur = self.all_locations.copy()
         loc_wo_cur.remove(self.current_location)
 
@@ -184,7 +263,8 @@ class Story:
             print(f'        {loc_wo_cur.index(location)+1}. {location.capitalize()}')
 
         while True:
-            room = input('').lower()
+            room = input('\033[94m').lower()
+            print('\033[0m', end='')
 
             # Handled number inputs - Change number to room name
             for i in range(len(loc_wo_cur)):
@@ -197,9 +277,9 @@ class Story:
                     self.visited_locations.append(room)
                 self.enter_room(room)
             elif room == self.current_location:
-                print(f'You are already in the {self.current_location.capitalize()}.')
+                print(colored(f'You are already in the {self.current_location.capitalize()}.', 'yellow'))
             else:
-                print(colored('Invalid room. Please try again.','red'))
+                print(colored('That room does not exist to your knowledge. Please choose another room.','red'))
 
     def enter_room(self, room):
         match room:

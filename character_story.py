@@ -1,8 +1,29 @@
 from termcolor import colored
 import os
+import sys
+import time
 
+import settings
 import mainstory
 import minigames
+
+def print(*args, **kwargs):
+    # Extract speed settings if provided, otherwise use defaults
+    speed = kwargs.pop('speed', settings.print_speed)
+    sep = kwargs.pop('sep', ' ')
+    end = kwargs.pop('end', '\n')
+    
+    # Combine all arguments into one string (mimicking standard print)
+    message = sep.join(map(str, args))
+    
+    for char in message:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(speed)
+    
+    # Print the ending (usually a newline)
+    sys.stdout.write(end)
+    sys.stdout.flush()
 
 # If there are events that may happen, this class will allow these events to happen based on the character chosen
 class StoryParanormal(mainstory.Story):
@@ -10,18 +31,22 @@ class StoryParanormal(mainstory.Story):
     def foyer(self):
         super().foyer()
 
-        print('''
-        As you gaze on the wall, you find yourself trembling at the sight of
-        
-            a low BLOOD splatter
-        
-        You hear a faint whistle mumbling the words
-            On... his... knees...
-        
-    PRESS ENTER TO CONTINUE''')
-        input('')
+        if self.mini_result == True:
+            print('''
+        The air turns ice-cold. A whisper crawls into your ear: "He... knelt...
+        begging for gold... but the shadow stood above us  both."  You  realize
+        the blood splatter stops at  three  feet.  Arthur  was  kneeling  here,
+        begging, but he wasn't the one who bled.
+        \n    PRESS ENTER TO CONTINUE''')
+            input('')
+        else:
+            print('''
+        The shadows dance, mocking your eyes. The  stain  is  just  a  stain, a
+        senseless blotch on a ruined house.
+        \n    PRESS ENTER TO CONTINUE''')
+            input('')
 
-        self.path()
+        self.display_rooms()
 
     # STUDY
     def study(self):
@@ -31,11 +56,10 @@ class StoryParanormal(mainstory.Story):
         You hear a whisper like a wind
 
             tea... tasted... sleep...
-
-    PRESS ENTER TO CONTINUE''')
+        \n    PRESS ENTER TO CONTINUE''')
         input('')
 
-        self.path()
+        self.display_rooms()
 
     # BEDROOM
     def bedroom(self):
@@ -45,39 +69,20 @@ class StoryParanormal(mainstory.Story):
         As you take a closer look, you hear a faint voice...
         
             Staged... all... staged...
-
-    PRESS ENTER TO CONTINUE
-    ''')
+        \n    PRESS ENTER TO CONTINUE''')
         input('')
 
-        self.path()
+        self.display_rooms()
 
     # KITCHEN
     def kitchen(self):
         super().kitchen()
-        self.path()
+        self.display_rooms()
 
     # LIBRARY
     def library(self):
-        os.system('cls')
-        self.current_location = 'library'
-
-        print('''
-    LOCATION: The Library
-        Stepping into the library, you browse through all the books available when you stumble upon a photo.
-        It turns out that Elara had a secret lover: The Lawyer. Her husband had not known anything about this.
-        After going through several book isles, you found a marriage contract between Alistair and his wife.
-        It says that if Elara ever had a divorce with him, Elara would lose everything.
-
-    PRESS ENTER TO CONTINUE''')
-        input('')
-
-        self.path()
-
-    # NURSERY
-    def nursery(self):
-        super().nursery()
-        self.path()
+        super().kitchen()
+        self.display_rooms()
 
 class StoryPrivateInvestigator(mainstory.Story):
     # FOYER
@@ -88,11 +93,11 @@ class StoryPrivateInvestigator(mainstory.Story):
         As you gaze on the wall, you find a low blood splatter.
         You use your tools and find a size 9 boot print in the dust.
         Coincidentally, size 9 is the same size as Arthur's foot.
-
-    PRESS ENTER TO CONTINUE''')
+        \n    PRESS ENTER TO CONTINUE''')
         input('')
 
-        self.path()
+        self.display_rooms()
+    
     # STUDY
     def study(self):
         super().study()
@@ -102,25 +107,20 @@ class StoryPrivateInvestigator(mainstory.Story):
         print('''
         After cracking the combination to the safe, you find a book that reads 'A Poisoner's Guide'.
         You thought, "maybe Elara used this to poison Alistair."
-
-    PRESS ENTER TO CONTINUE''')
+        \n    PRESS ENTER TO CONTINUE''')
         input('')
 
-        self.path()
+        self.display_rooms()
 
     # BEDROOM
     def bedroom(self):
         super().bedroom()
-
-        print('''        "Aha! This letter opener is the murder weapon!"
-        ''')
-
-        self.path()
+        self.display_rooms()
 
     # KITCHEN
     def kitchen(self):
         super().kitchen()
-        self.path()
+        self.display_rooms()
 
     # LIBRARY
     def library(self):
@@ -131,22 +131,16 @@ class StoryPrivateInvestigator(mainstory.Story):
         of long, blonde hair, caught in the grate of the ventilation. It belongs
         to Elara, Alistair's wife. It looks like she was spying on something...
         or someone...
-        
-    PRESS ENTER TO CONTINUE''')
+        \n    PRESS ENTER TO CONTINUE''')
 
         input('')
 
-        self.path()
-
-    # NURSERY
-    def nursery(self):
-        super().nursery()
-        self.path()
+        self.display_rooms()
 
 class StoryBuyer(mainstory.Story):
+    # FOYER
     def foyer(self):
         super().foyer()
-    # FOYER
         print('''
         As you gaze on the wall, you find yourself trembling at the sight of
 
@@ -155,12 +149,11 @@ class StoryBuyer(mainstory.Story):
         As you pull out your blueprint, you notice something missing from the room: A hidden step-stool nook.
 
             "Why would anyone need a stool here?", you thought
-
-    PRESS ENTER TO CONTINUE''')
+        \n    PRESS ENTER TO CONTINUE''')
 
         input('')
 
-        self.path()
+        self.display_rooms()
 
     # STUDY
     def study(self):
@@ -169,43 +162,26 @@ class StoryBuyer(mainstory.Story):
         print('''        Despite trying so hard to find the combination, you could not find the right combination.
         You pulled out the blueprint and after close inspection and comparison, the blueprint seems
         to show a hidden crawlspace directly above the desk chair.
-
-    PRESS ENTER TO CONTINUE''')
+        \n    PRESS ENTER TO CONTINUE''')
         input('')
-        self.path()
+        self.display_rooms()
 
     # BEDROOM
     def bedroom(self):
         super().bedroom()
-        self.path()
+        self.display_rooms()
 
     # KITCHEN
     def kitchen(self):
         super().kitchen()
-        self.path()
+        self.display_rooms()
 
     # LIBRARY
     def library(self):
         super().library()
-        
-        if 'nursery' not in self.all_locations:
-            self.all_locations = ['foyer', 'study', 'bedroom', 'kitchen', 'library', 'nursery']
-            print('''
-        After close inspection upon the blueprint of the mansion, you find a
-        hidden room next to the library. After following the direction of the
-        room, you find a ventilation space, leading away from the library. It
-        appears to be a nursery.''')
-
-            print(colored('''
-        You now have access to The Nursery.
-            ''', 'green'))
-
-        print('    PRESS ENTER TO CONTINUE')
-        input('')
-
-        self.path()
+        self.display_rooms()
 
     # NURSERY
     def nursery(self):
         super().nursery()
-        self.path()
+        self.display_rooms()
