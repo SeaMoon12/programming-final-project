@@ -1,5 +1,6 @@
 from termcolor import colored
 import os
+
 import character_story
 
 class Main:
@@ -15,7 +16,7 @@ class Main:
             Unique Ability  : Spirit Whisperer
             Receives cryptic, fragmented messages from Alistair's ghost
 
-        2. The Detective
+        2. The Private Investigator
             Difficulty      : Medium
             Unique Ability  : Authority Check?
             ???
@@ -28,8 +29,8 @@ class Main:
             if char_choice == 'paranormal' or char_choice ==  'the paranormal' or char_choice ==  '1':
                 self.story = character_story.StoryParanormal()
                 break
-            elif char_choice == 'detective' or char_choice == 'the detective' or char_choice == '2':
-                self.story = character_story.StoryDetective()
+            elif char_choice == 'investigator' or char_choice == 'the investigator' or char_choice == '2' or char_choice == 'the private investigator':
+                self.story = character_story.StoryPrivateInvestigator()
                 break
             elif char_choice == 'buyer' or char_choice == 'the buyer' or char_choice == '3':
                 self.story = character_story.StoryBuyer()

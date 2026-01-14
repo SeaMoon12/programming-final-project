@@ -1,9 +1,10 @@
-# If there are events that may happen, this class will allow these events to happen based on the character chosen
 from termcolor import colored
 import os
+
 import mainstory
 import minigames
 
+# If there are events that may happen, this class will allow these events to happen based on the character chosen
 class StoryParanormal(mainstory.Story):
     # FOYER
     def foyer(self):
@@ -78,14 +79,14 @@ class StoryParanormal(mainstory.Story):
         super().nursery()
         self.path()
 
-class StoryDetective(mainstory.Story):
+class StoryPrivateInvestigator(mainstory.Story):
     # FOYER
     def foyer(self):
         super().foyer()
 
         print('''
         As you gaze on the wall, you find a low blood splatter.
-        You use your detective tools and find a size 9 boot print in the dust.
+        You use your tools and find a size 9 boot print in the dust.
         Coincidentally, size 9 is the same size as Arthur's foot.
 
     PRESS ENTER TO CONTINUE''')
@@ -165,7 +166,8 @@ class StoryBuyer(mainstory.Story):
     def study(self):
         super().study()
 
-        print('''        You pulled out the blueprint and after close inspection and comparison, the blueprint seems
+        print('''        Despite trying so hard to find the combination, you could not find the right combination.
+        You pulled out the blueprint and after close inspection and comparison, the blueprint seems
         to show a hidden crawlspace directly above the desk chair.
 
     PRESS ENTER TO CONTINUE''')
