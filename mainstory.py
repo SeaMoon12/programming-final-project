@@ -31,10 +31,15 @@ class Story:
         self.visited_locations = ['foyer']
         self.current_location = ''
 
-        self.mini_result = None
-
         self.actions = ['continue', 'deep search']
-        self.searches = settings.searches
+
+        # RESULTS FOR THE MINIGAME
+        self.foyer_minigame_result = None
+        self.study_minigame_result = None
+        self.bedroom_minigame_result = None
+        self.kitchen_minigame_result = None
+        self.library_minigame_result = None
+        self.nursery_minigame_result = None
 
         self.introduction()
 
@@ -204,47 +209,14 @@ class Story:
 
 # == ACTIONS ==
     def search(self):
-        self.searches -= 1
         match self.current_location:
 
-    # FOYER
-            case 'foyer':
-                print('''        A dark, brownish spray patterns the peeling wallpaper near the  stairs.
-        It feels like a silent scream frozen in time.
-        \n    PRESS ENTER TO CONTINUE''')
-                input('')
-                return minigames.Minigames().anagram()
-
-    # STUDY
-            case 'study':
-                print('''        Behind the chair is another wall-vent. It sits at the exact level  of a
-        seated man’s neck. A nearby floor safe remains the only  locked  secret
-        left.
-        \n    PRESS ENTER TO CONTINUE\n''')
-                input('')
-                return minigames.Minigames().numbrle()
-
-    # BEDROOM
-            case 'bedroom':
-                print('''        A floorboard near the vanity is loose. A faint, greasy smear marks  the
-        edge.
-        \n    PRESS ENTER TO CONTINUE''')
-                input('')
-                return minigames.Minigames().wordle()
-
-    # LIBRARY
-            case 'library':
-                print('''        A rectangular iron wall-vent sits low behind the desk. The floor in
-        front of it is polished clean, as if by many passing bodies.
-        \n    PRESS ENTER TO CONTINUE''')
-                input('')
-                return minigames.Minigames().hangman()
-
-    # KITCHEN
-            case 'kitchen': return minigames.Minigames().riddles()
-
-    # NURSERY
-            case 'nursery': return minigames.Minigames().cryptic()
+            case 'foyer': self.run_minigame(settings.foyer_searches, settings.foyer_dialogue, self.foyer_minigame_result, minigames.Minigames().anagram())
+            case 'study': self.run_minigame(settings.study_searches, settings.study_dialogue, self.study_minigame_result, minigames.Minigames().numbrle())
+            case 'bedroom': self.run_minigame(settings.bedroom_searches, settings.bedroom_dialogue, self.bedroom_minigame_result, minigames.Minigames().wordle())
+            case 'library': self.run_minigame(settings.library_searches, settings.library_dialogue, self.library_minigame_result, minigames.Minigames().hangman())
+            case 'kitchen': self.run_minigame(settings.kitchen_searches, settings.kitchen_dialogue, self.kitchen_minigame_result, minigames.Minigames().riddles())
+            case 'nursery': self.run_minigame(settings.nursery_searches, settings.nursery_dialogue, self.nursery_minigame_result, minigames.Minigames().cryptic())
 
 # == BTS ==
 # TECHNICALITIES
@@ -272,11 +244,7 @@ class Story:
 
     def act(self, act):
         match act:
-            case 'deep search': 
-                if self.searches <= 0:
-                    print(colored('Sorry, you have no more searches available.','red'))
-                else:
-                    self.mini_result = self.search()
+            case 'deep search': self.search()
             case 'continue': self.display_rooms()
 
     def display_rooms(self):
@@ -342,3 +310,11 @@ class Story:
                     break
                 else:
                     print(colored('Invalid input. Please answer with \'y\' or \'n\'.', 'red'))
+
+    def run_minigame(self, location_searches, dialogue, minigame_result, minigame):
+        if location_searches > 0:
+            print(dialogue)
+            input('')
+            minigame_result = minigame
+        else:
+            print(colored('Sorry, you have no more searches available for this room.','red'))
