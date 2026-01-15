@@ -306,6 +306,16 @@ class Story:
     def display_rooms(self):
         loc_wo_cur = self.all_locations.copy()
         loc_wo_cur.remove(self.current_location)
+        can_accuse = False
+
+        # Check wheether player can accuse
+        for room in self.all_locations:
+            if room not in self.visited_locations:
+                can_accuse = False
+            else:
+                can_accuse = True
+        if can_accuse == True:
+            print(colored('''\nYou have visited all rooms. You can now accuse the killer.\n''', 'green'))
 
         print('''    Where would you like to investigate next?
         ''')
@@ -313,8 +323,13 @@ class Story:
         # Print locations
         for location in loc_wo_cur:
             print(f'        {loc_wo_cur.index(location)+1}. {location.capitalize()}')
+        
+        # Also print option to accuse if can accuse
+        if can_accuse == True:
+            print(f'        {len(loc_wo_cur)+1}. Accuse')
 
         while True:
+            # Ask user for input
             room = input('\033[94m').lower()
             print('\033[0m', end='')
 
@@ -323,13 +338,28 @@ class Story:
                 if room == str(i+1):
                     room = loc_wo_cur[i]
             
+            # location visit conditionals
             if room in loc_wo_cur:
-                print(f'Entered {room}')
+                print(f'Entering {room}')
                 if room not in self.visited_locations:
                     self.visited_locations.append(room)
                 self.enter_room(room)
             elif room == self.current_location:
                 print(colored(f'You are already in the {self.current_location.capitalize()}.', 'yellow'))
+
+            # if user pick to accuse
+            elif (room == 'accuse' or room == str(len(self.all_locations))) and (can_accuse == True):
+                self.accuse()
+
+            # for debugging purposes
+            elif room == 'visits':
+                print(self.visited_locations)
+            elif room == 'visit all':
+                print('You have visited all locations.')
+                self.visited_locations = self.all_locations
+            elif room == 'display number of rooms':
+                print(len(self.all_locations))
+
             else:
                 print(colored('That room does not exist to your knowledge. Please choose another room.','red'))
 
@@ -343,26 +373,15 @@ class Story:
             case 'nursery': self.nursery()
 
     def accuse(self):
-        can_accuse = False
         choice = ''
-
-        for location in self.all_locations:
-            if location not in self.visited_locations:
-                can_accuse = False
-                break
+        os.system('cls')
+        while choice != 'y' or 'n':
+            choice = input('Would you like to accuse now? (y/n)\n')
+            if choice == 'y':
+                print('Accuse!')
+            elif choice == 'n':
+                self.visited_locations = []
+                print('Okay. Please visit all rooms again if you want to accuse.\n')
+                self.display_rooms()
             else:
-                can_accuse = True
-        if can_accuse == True:
-            os.system('cls')
-            while choice != 'y' or 'n':
-                choice = input('Would you like to accuse now? (y/n)')
-                if choice == 'y':
-                    pass
-                    # accuse
-                elif choice == 'n':
-                    can_accuse = False
-                    self.visited_locations = []
-                    print('Okay. Please visit all rooms again if you want to accuse.')
-                    break
-                else:
-                    print(colored('Invalid input. Please answer with \'y\' or \'n\'.', 'red'))
+                print(colored('Invalid input. Please answer with \'y\' or \'n\'.', 'red'))
