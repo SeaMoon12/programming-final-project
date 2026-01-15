@@ -17,8 +17,8 @@ foyer_dialogue = '''        A dark, brownish spray patterns the peeling wallpape
         \n    PRESS ENTER TO CONTINUE'''
 study_dialogue = '''        Behind the chair is another wall-vent. It sits at the exact  level  of
         a seated man’s neck. A nearby  floor  safe  remains  the  only  locked
-        secret left.
-        \n    PRESS ENTER TO CONTINUE\n'''
+        secret left. You try to crack the code to the safe.
+        \n    PRESS ENTER TO CONTINUE'''
 bedroom_dialogue = '''        A floorboard near the vanity is loose. A faint, greasy smear marks the
         edge.
         \n    PRESS ENTER TO CONTINUE'''
@@ -33,10 +33,13 @@ nursery_dialogue = '''        A leather-bound diary sits on a small white chair.
         the rot.
         \n    PRESS ENTER TO CONTINUE'''
 
+# Settings for minigames
+numbrle_chances = 10
+
 # Answers to the minigames
 hangman_answer = None
 wordle_answer = None
-numbrle_answer = None
+numbrle_answer = 4261
 anagram_answer = None
 cryptic_answer = None
 riddle_answer = None
