@@ -32,78 +32,14 @@ class StoryParanormal(mainstory.Story):
         self.role = 'paranormal'
         super().__init__()
 
-    # FOYER
-    def foyer(self):
-        super().foyer()
-
-        if self.foyer_minigame_result == True:
-            print(dialogues.foyer['success']['paranormal'])
-            input('')
-        elif self.foyer_minigame_result == False:
-            print(dialogues.foyer['fail'])
-            input('')
-        
-        self.foyer_minigame_result = None
-        self.display_rooms()
-
-    # STUDY
-    def study(self):
-        super().study()
-
-        if self.study_minigame_result == True:
-            self.found_brochure = True
-            print(dialogues.study['success']['paranormal'])
-            input('')
-        elif self.study_minigame_result == False:
-            print(dialogues.study['fail'])
-            input('')
-
-        self.study_minigame_result = None
-        self.display_rooms()
-
-    # BEDROOM
-    def bedroom(self):
-        super().bedroom()
-
-        if self.bedroom_minigame_result == True:
-            print(dialogues.bedroom['success']['paranormal'])
-            input('')
-        elif self.bedroom_minigame_result == False:
-            print(dialogues.bedroom['fail'])
-            input('')
-
-        self.bedroom_minigame_result = None
-        self.display_rooms()
-
-    # KITCHEN
-    def kitchen(self):
-        super().kitchen()
-
-        if self.kitchen_minigame_result == True:
-            print(dialogues.kitchen['success']['paranormal'])
-            input('')
-        elif self.kitchen_minigame_result == False:
-            print(dialogues.kitchen['fail'])
-            input('')
-
-        self.kitchen_minigame_result = None
-        self.display_rooms()
-
-    # LIBRARY
-    def library(self):
-        super().library()
-        
-        if self.library_minigame_result == True:
-            self.found_glove = True
-
-            print(dialogues.library['success']['paranormal'])
-            input('')
-        elif self.library_minigame_result == False:
-            print(dialogues.library['fail'])
-            input('')
-
-        self.library_minigame_result = None
-        self.display_rooms()
+    def enter_room(self, room):
+        match room:
+            case 'foyer': self.rooms('foyer', dialogues.foyer['introduction'], dialogues.foyer['success']['paranormal'], dialogues.foyer['fail'])
+            case 'study': self.rooms('study', dialogues.study['introduction'], dialogues.study['success']['paranormal'], dialogues.study['fail'])
+            case 'bedroom': self.rooms('bedroom', dialogues.bedroom['introduction'], dialogues.bedroom['success']['paranormal'], dialogues.bedroom['fail'])
+            case 'kitchen': self.rooms('kitchen', dialogues.kitchen['introduction'], dialogues.kitchen['success']['paranormal'], dialogues.kitchen['fail'])
+            case 'library': self.rooms('library', dialogues.library['introduction'], dialogues.library['success']['paranormal'], dialogues.library['fail'])
+            case 'nursery': self.rooms('nursery', dialogues.nursery['introduction'], dialogues.nursery['success']['paranormal'], dialogues.nursery['fail'])
 
 class StoryPrivateInvestigator(mainstory.Story):
     def __init__(self):
@@ -111,72 +47,14 @@ class StoryPrivateInvestigator(mainstory.Story):
         self.role = 'investigator'
         super().__init__()
 
-    # FOYER
-    def foyer(self):
-        super().foyer()
-
-        if self.foyer_minigame_result == True:
-            print(dialogues.foyer['success']['investigator'])
-            input('')
-        elif self.foyer_minigame_result == False:
-            print(dialogues.foyer['fail'])
-            input('')
-
-        self.display_rooms()
-
-    # STUDY
-    def study(self):
-        super().study()
-
-        if self.study_minigame_result == True:
-            self.found_brochure = True
-            print(dialogues.study['success']['investigator'])
-            input('')
-        elif self.study_minigame_result == False:
-            print(dialogues.study['fail'])
-            input('')
-
-        self.display_rooms()
-
-    # BEDROOM
-    def bedroom(self):
-        super().bedroom()
-
-        if self.bedroom_minigame_result == True:
-            print(dialogues.bedroom['success']['investigator'])
-            input('')
-        elif self.bedroom_minigame_result == False:
-            print(dialogues.bedroom['fail'])
-            input('')
-
-        self.display_rooms()
-
-    # KITCHEN
-    def kitchen(self):
-        super().kitchen()
-
-        if self.kitchen_minigame_result == True:
-            print(dialogues.kitchen['success']['investigator'])
-            input('')
-        elif self.kitchen_minigame_result == False:
-            print(dialogues.kitchen['fail'])
-            input('')
-
-        self.display_rooms()
-
-    # LIBRARY
-    def library(self):
-        super().library()
-
-        if self.library_minigame_result == True:
-            self.found_glove = True
-            print(dialogues.library['success']['investigator'])
-            input('')
-        elif self.library_minigame_result == False:
-            print(dialogues.library['fail'])
-            input('')
-
-        self.display_rooms()
+    def enter_room(self, room):
+        match room:
+            case 'foyer': self.rooms('foyer', dialogues.foyer['introduction'], dialogues.foyer['success']['investigator'], dialogues.foyer['fail'])
+            case 'study': self.rooms('study', dialogues.study['introduction'], dialogues.study['success']['investigator'], dialogues.study['fail'])
+            case 'bedroom': self.rooms('bedroom', dialogues.bedroom['introduction'], dialogues.bedroom['success']['investigator'], dialogues.bedroom['fail'])
+            case 'kitchen': self.rooms('kitchen', dialogues.kitchen['introduction'], dialogues.kitchen['success']['investigator'], dialogues.kitchen['fail'])
+            case 'library': self.rooms('library', dialogues.library['introduction'], dialogues.library['success']['investigator'], dialogues.library['fail'])
+            case 'nursery': self.rooms('nursery', dialogues.nursery['introduction'], dialogues.nursery['success']['investigator'], dialogues.nursery['fail'])
 
     def display_rooms(self):
         minigame_result = self.foyer_minigame_result or self.study_minigame_result or self.bedroom_minigame_result or self.kitchen_minigame_result or self.library_minigame_result
@@ -232,94 +110,62 @@ class StoryBuyer(mainstory.Story):
         self.role = 'buyer'
         super().__init__()
 
-    # FOYER
-    def foyer(self):
-        super().foyer()
+    def enter_room(self, room):
+        match room:
+            case 'foyer': self.rooms('foyer', dialogues.foyer['introduction'], dialogues.foyer['success']['buer'], dialogues.foyer['fail'])
+            case 'study': self.rooms('study', dialogues.study['introduction'], dialogues.study['success']['buyer'], dialogues.study['fail'])
+            case 'bedroom': self.rooms('bedroom', dialogues.bedroom['introduction'], dialogues.bedroom['success']['buyer'], dialogues.bedroom['fail'])
+            case 'kitchen': self.rooms('kitchen', dialogues.kitchen['introduction'], dialogues.kitchen['success']['buyer'], dialogues.kitchen['fail'])
+            case 'library': self.rooms('library', dialogues.library['introduction'], dialogues.library['success']['buyer'], dialogues.library['fail'])
+            case 'nursery': self.rooms('nursery', dialogues.nursery['introduction'], dialogues.nursery['success']['buyer'], dialogues.nursery['fail'])
 
-        if self.foyer_minigame_result == True:
-            print(dialogues.foyer['success']['buyer'])
+    def rooms(self, current_location, introduction_dialogue, success_dialogue, fail_dialogue):
+        os.system('cls')
+        self.current_location = current_location
+        
+        print(introduction_dialogue)
+        input('')
+
+        self.display_actions()
+
+        match current_location:
+            case 'foyer': minigame_result = self.foyer_minigame_result
+            case 'study': minigame_result = self.study_minigame_result
+            case 'bedroom': minigame_result = self.bedroom_minigame_result
+            case 'kitchen': minigame_result = self.kitchen_minigame_result
+            case 'library': minigame_result = self.library_minigame_result
+            case 'nursery': minigame_result = self.nursery_minigame_result
+
+        if minigame_result == True and (self.current_location != 'library' and self.current_location != 'study'):
+            print(success_dialogue)
             input('')
-        elif self.foyer_minigame_result == False:
-            print(dialogues.foyer['fail'])
-            input('')
+        elif minigame_result == False and (self.current_location != 'library' and self.current_location != 'study'):
+            print(fail_dialogue)
 
-        self.foyer_minigame_result = None
-        self.display_rooms()
-
-    # STUDY
-    def study(self):
-        super().study()
-
-        if self.study_minigame_result == True:
-            self.found_brochure = True
-            print(dialogues.study['success']['buyer'])
-            input('')
-        elif self.study_minigame_result == False:
-            print(dialogues.study['fail'])
-            input('')
-
-        self.study_minigame_result = None
-        self.display_rooms()
-
-    # BEDROOM
-    def bedroom(self):
-        super().bedroom()
-
-        if self.bedroom_minigame_result == True:
-            print(dialogues.bedroom['success']['buyer'])
-            input('')
-        elif self.bedroom_minigame_result == False:
-            print(dialogues.bedroom['fail'])
-            input('')
-
-        self.bedroom_minigame_result = None
-        self.display_rooms()
-
-    # KITCHEN
-    def kitchen(self):
-        super().kitchen()
-
-        if self.kitchen_minigame_result == True:
-            print(dialogues.kitchen['success']['buyer'])
-            input('')
-        elif self.kitchen_minigame_result == False:
-            print(dialogues.kitchen['fail'])
-            input('')
-
-        self.kitchen_minigame_result = None
-        self.display_rooms()
-
-    # LIBRARY
-    def library(self):
-        super().library()
-
-        if self.library_minigame_result == True:
+        # IF LIBRARY (for obtain key clue)
+        if minigame_result == True and self.current_location == 'library':
             self.found_glove = True
 
-            print(dialogues.library['success']['buyer'])
+            print(success_dialogue)
             input('')
 
             self.all_locations.append('nursery')
-
             print(colored('You now have access to the Nursery\n', 'green'))
 
-        elif self.library_minigame_result == False:
-            print(dialogues.library['fail'])
+        elif minigame_result == False and self.current_location == 'library':
+            print(fail_dialogue)
             input('')
 
-        self.library_minigame_result = None
-        self.display_rooms()
+        # IF STUDY (for obtain key clue)
+        if minigame_result == True and self.current_location == 'study':
+            self.found_brochure = True
 
-    # NURSERY
-    def nursery(self):
-        super().nursery()
-
-        if self.nursery_minigame_result == True:
-            print(dialogues.nursery['success'])
-            input('')
-        elif self.nursery_minigame_result == False:
-            print(dialogues.nursery['fail'])
+            print(success_dialogue)
             input('')
 
-        self.nursery_minigame_result = None
+        elif minigame_result == False and self.current_location == 'study':
+            print(fail_dialogue)
+            input('')
+
+        minigame_result = None
         self.display_rooms()

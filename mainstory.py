@@ -65,125 +65,57 @@ class Story:
     def introduction(self):
         os.system('cls')
 
-        print('''
-    THE BLACKWOOD GAZETTE
-    Vol. LXVIII - No. 242 | Tuesday, October 14, 2010 | Price: £1.50
+        print(dialogues.newspaper)
+        input('')
+        self.rooms('foyer', dialogues.foyer['introduction'], dialogues.foyer['success']['paranormal'], dialogues.foyer['fail'])
 
-        ======== TRAGEDY AT BLACKWOOD MANOR: LORD ALISTAIR FOUND DEAD ========
-          POLICE PROBE "CRIME OF PASSION" IN LOCKED-ROOM MYSTERY
-          By Julian Vane, Investigative Reporter
+    def rooms(self, current_location, introduction_dialogue, success_dialogue, fail_dialogue):
+        os.system('cls')
+        self.current_location = current_location
         
-            BLACKWOOD ESTATE –  The  prestigious  Blackwood  family  has  been
-            thrust  into   a   "living   nightmare"  following   the  gruesome
-            discovery of Lord Alistair Blackwood (72)  early  Monday  morning.
-            The patriarch, a man known for his iron-fisted  control  over  the
-            local shipping industry, was found deceased in his  private  study
-            at approximately 6:00 AM.
-
-            A Gruesome Discovery
-                The body was discovered by  the  estate’s  long-serving  maid,
-                Martha Higgins, when she arrived to deliver the Lord’s morning
-                tea. According to police reports, the study  door  was  locked
-                from the  inside.  Investigators  state  that  Lord  Blackwood
-                succumbed to a single, fatal puncture wound to  the  neck. The
-                weapon-believed to be a silver letter opener  from the  Lord’s
-                own  desk-remains  missing.  Detective  Inspector  Graves  has
-                characterized the slaying as a "crime of passion," citing  the
-                intimate nature of the attack.
-
-            The Inner Circle Under Fire
-                As the investigation unfolds, the movements of  those  closest
-                to the Lord have come under intense scrutiny:
-
-                    - Arthur Blackwood (Son): The  heir  apparent  provided  a
-                      confirmed alibi at the Royal  Casino. However, witnesses
-                      noted Arthur stepped out for "an hour  of air"  at  3:00
-                      AM-the estimated time of the struggle.
-
-                    - Lady Elara Blackwood (Wife): Lady  Elara  maintains  she
-                      was asleep in her separate wing of the  manor.  With  no
-                      witnesses to  verify  her  whereabouts,  she  remains  a
-                      person of interest.
-
-                    - Lily  Blackwood  (Granddaughter):  The  10-year-old  was
-                      present in the house, but  authorities  have  officially
-                      ruled her out. "A child of  her  stature  is  physically
-                      incapable of such a calculated  strike,"  Graves  noted.
-            
-            CASE CLOSED: NO JUSTICE FOR ALISTAIR
-                [UPDATE: Nov 12, 2010] In a shocking turn of events, the Crown
-                Prosecution  Service  has  announced  the  suspension  of  the
-                Blackwood investigation. Despite the missing  weapon  and  the
-                gaps in the family's alibis, officials cited a "total lack  of
-                forensic evidence" to move forward. The Blackwood fortune  now
-                hangs in limbo, as the family prepares  for  a  lengthy  legal
-                battle over the estate-a shadow that will loom over the  manor
-                until a new owner dares to claim it.
-
-    PRESS ENTER TO CONTINUE
-        ''')
-        input('')
-        self.foyer()
-
-# == ROOMS ==
-# FOYER
-    def foyer(self):
-        os.system('cls')
-        self.current_location = 'foyer'
-
-        print(dialogues.foyer['introduction'])
+        print(introduction_dialogue)
         input('')
 
         self.display_actions()
 
-# STUDY
-    def study(self):
-        os.system('cls')
-        self.current_location = 'study'
+        match current_location:
+            case 'foyer': minigame_result = self.foyer_minigame_result
+            case 'study': minigame_result = self.study_minigame_result
+            case 'bedroom': minigame_result = self.bedroom_minigame_result
+            case 'kitchen': minigame_result = self.kitchen_minigame_result
+            case 'library': minigame_result = self.library_minigame_result
+            case 'nursery': minigame_result = self.nursery_minigame_result
 
-        print(dialogues.study['introduction'])
-        input('')
+        if minigame_result == True and (self.current_location != 'library' and self.current_location != 'study'):
+            print(success_dialogue)
+            input('')
+        elif minigame_result == False and (self.current_location != 'library' and self.current_location != 'study'):
+            print(fail_dialogue)
 
-        self.display_actions()
+        # IF LIBRARY (for obtain key clue)
+        if minigame_result == True and self.current_location == 'library':
+            self.found_glove = True
 
-# BEDROOM
-    def bedroom(self):
-        os.system('cls')
-        self.current_location = 'bedroom'
+            print(success_dialogue)
+            input('')
 
-        print(dialogues.bedroom['introduction'])
-        input('')
+        elif minigame_result == False and self.current_location == 'library':
+            print(fail_dialogue)
+            input('')
 
-        self.display_actions()
+        # IF STUDY (for obtain key clue)
+        if minigame_result == True and self.current_location == 'study':
+            self.found_brochure = True
 
-# KITCHEN
-    def kitchen(self):
-        os.system('cls')
-        self.current_location = 'kitchen'
+            print(success_dialogue)
+            input('')
 
-        print(dialogues.kitchen['introduction'])
-        input('')
+        elif minigame_result == False and self.current_location == 'study':
+            print(fail_dialogue)
+            input('')
 
-        self.display_actions()
-
-# LIBRARY
-    def library(self):
-        os.system('cls')
-        self.current_location = 'library'
-
-        print(dialogues.library['introduction'])
-        input('')
-
-        self.display_actions()
-
-    # NURSERY
-    def nursery(self):
-        os.system('cls')
-        self.current_location = 'nursery'
-
-        print(dialogues.nursery['introduction'])
-
-        self.display_actions()
+        minigame_result = None
+        self.display_rooms()
 
 # == ACTIONS ==
     def search(self):
@@ -346,13 +278,8 @@ class Story:
                 print(colored('That room does not exist to your knowledge. Please choose another room.','red'))
 
     def enter_room(self, room):
-        match room:
-            case 'foyer': self.foyer()
-            case 'study': self.study()
-            case 'bedroom': self.bedroom()
-            case 'kitchen': self.kitchen()
-            case 'library': self.library()
-            case 'nursery': self.nursery()
+        # different per character
+        pass
 
 # ACCUSATIONS
     def accuse_confirmation(self):

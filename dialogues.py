@@ -303,3 +303,61 @@ nursery = {
         watched remains.
         \n    PRESS ENTER TO CONTINUE'''
 }
+
+newspaper = '''
+    THE BLACKWOOD GAZETTE
+    Vol. LXVIII - No. 242 | Tuesday, October 14, 2010 | Price: £1.50
+
+        ======== TRAGEDY AT BLACKWOOD MANOR: LORD ALISTAIR FOUND DEAD ========
+          POLICE PROBE "CRIME OF PASSION" IN LOCKED-ROOM MYSTERY
+          By Julian Vane, Investigative Reporter
+        
+            BLACKWOOD ESTATE –  The  prestigious  Blackwood  family  has  been
+            thrust  into   a   "living   nightmare"  following   the  gruesome
+            discovery of Lord Alistair Blackwood (72)  early  Monday  morning.
+            The patriarch, a man known for his iron-fisted  control  over  the
+            local shipping industry, was found deceased in his  private  study
+            at approximately 6:00 AM.
+
+            A Gruesome Discovery
+                The body was discovered by  the  estate’s  long-serving  maid,
+                Martha Higgins, when she arrived to deliver the Lord’s morning
+                tea. According to police reports, the study  door  was  locked
+                from the  inside.  Investigators  state  that  Lord  Blackwood
+                succumbed to a single, fatal puncture wound to  the  neck. The
+                weapon-believed to be a silver letter opener  from the  Lord’s
+                own  desk-remains  missing.  Detective  Inspector  Graves  has
+                characterized the slaying as a "crime of passion," citing  the
+                intimate nature of the attack.
+
+            The Inner Circle Under Fire
+                As the investigation unfolds, the movements of  those  closest
+                to the Lord have come under intense scrutiny:
+
+                    - Arthur Blackwood (Son): The  heir  apparent  provided  a
+                      confirmed alibi at the Royal  Casino. However, witnesses
+                      noted Arthur stepped out for "an hour  of air"  at  3:00
+                      AM-the estimated time of the struggle.
+
+                    - Lady Elara Blackwood (Wife): Lady  Elara  maintains  she
+                      was asleep in her separate wing of the  manor.  With  no
+                      witnesses to  verify  her  whereabouts,  she  remains  a
+                      person of interest.
+
+                    - Lily  Blackwood  (Granddaughter):  The  10-year-old  was
+                      present in the house, but  authorities  have  officially
+                      ruled her out. "A child of  her  stature  is  physically
+                      incapable of such a calculated  strike,"  Graves  noted.
+            
+            CASE CLOSED: NO JUSTICE FOR ALISTAIR
+                [UPDATE: Nov 12, 2010] In a shocking turn of events, the Crown
+                Prosecution  Service  has  announced  the  suspension  of  the
+                Blackwood investigation. Despite the missing  weapon  and  the
+                gaps in the family's alibis, officials cited a "total lack  of
+                forensic evidence" to move forward. The Blackwood fortune  now
+                hangs in limbo, as the family prepares  for  a  lengthy  legal
+                battle over the estate-a shadow that will loom over the  manor
+                until a new owner dares to claim it.
+
+    PRESS ENTER TO CONTINUE
+        '''
