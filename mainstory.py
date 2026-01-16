@@ -164,7 +164,7 @@ class Story:
             case 'nursery':
                 if self.nursery_searches > 0:
                     self.nursery_searches -= 1
-                    print(settings.nursery_dialogue)
+                    print(dialogues.nursery['minigame_intro'])
                     input('')
                     self.nursery_minigame_result = minigames.Minigames().cryptic()
                 else:

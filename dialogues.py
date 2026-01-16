@@ -265,7 +265,7 @@ nursery = {
         they are all positioned to face the study wall, as if watching a  play
         you weren't invited to.
         \n    PRESS ENTER TO CONTINUE''',
-    'minigame_fail':
+    'fail':
         '''
         The letters squirm like  insects. Your  nose  bleeds  from  the  sheer
         malice in the room. You slam the book shut, but the feeling  of  being

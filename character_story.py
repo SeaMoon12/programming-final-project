@@ -112,12 +112,12 @@ class StoryBuyer(mainstory.Story):
 
     def enter_room(self, room):
         match room:
-            case 'foyer': self.rooms('foyer', dialogues.foyer['introduction'], dialogues.foyer['success']['buer'], dialogues.foyer['fail'])
+            case 'foyer': self.rooms('foyer', dialogues.foyer['introduction'], dialogues.foyer['success']['buyer'], dialogues.foyer['fail'])
             case 'study': self.rooms('study', dialogues.study['introduction'], dialogues.study['success']['buyer'], dialogues.study['fail'])
             case 'bedroom': self.rooms('bedroom', dialogues.bedroom['introduction'], dialogues.bedroom['success']['buyer'], dialogues.bedroom['fail'])
             case 'kitchen': self.rooms('kitchen', dialogues.kitchen['introduction'], dialogues.kitchen['success']['buyer'], dialogues.kitchen['fail'])
             case 'library': self.rooms('library', dialogues.library['introduction'], dialogues.library['success']['buyer'], dialogues.library['fail'])
-            case 'nursery': self.rooms('nursery', dialogues.nursery['introduction'], dialogues.nursery['success']['buyer'], dialogues.nursery['fail'])
+            case 'nursery': self.rooms('nursery', dialogues.nursery['introduction'], dialogues.nursery['success'], dialogues.nursery['fail'])
 
     def rooms(self, current_location, introduction_dialogue, success_dialogue, fail_dialogue):
         os.system('cls')
