@@ -201,7 +201,8 @@ class Minigames:
         answers = ('plant')
         used_words  = []
         invalid = []
-        wordle(guesses, answers)
+        
+        return wordle(guesses, answers)
 
     def numbrle(self):
         chances = settings.numbrle_chances

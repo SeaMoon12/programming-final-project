@@ -27,6 +27,10 @@ def print(*args, **kwargs):
 
 # If there are events that may happen, this class will allow these events to happen based on the character chosen
 class StoryParanormal(mainstory.Story):
+    def __init__(self):
+        self.role = 'paranormal'
+        super().__init__()
+
     # FOYER
     def foyer(self):
         super().foyer()
@@ -54,6 +58,7 @@ class StoryParanormal(mainstory.Story):
         super().study()
 
         if self.study_minigame_result == True:
+            self.found_brochure = True
             print('''
         You examine the vent slats. They are bent outward. You crack the  safe
         You sit in the chair. Suddenly, you can't move. Your limbs  are  lead.
@@ -121,13 +126,17 @@ class StoryParanormal(mainstory.Story):
     # LIBRARY
     def library(self):
         super().library()
-
+        
         if self.library_minigame_result == True:
+            self.found_glove = True
+
             print('''
-        You hear the sound of small, frantic breathing inside  the  wall. "The
-        walls have eyes... and I am the eyes." You reach in  and  pull  out  a
-        strand of white silk. It feels like spiderweb, but it's from a child's
-        dress.
+        As you touch the fabric, the air turns ice-cold. You don't just see  a
+        glove; you feel the small, frantic breathing of a child hiding in  the
+        dark. A whisper crawls into your ear: 'The walls have eyes... and I am
+        the eyes.' The glove feels like a physical piece of  a  haunting  that
+        hasn't yet left the manor.
+
         \n    PRESS ENTER TO CONTINUE''')
             input('')
         elif self.library_minigame_result == False:
@@ -142,8 +151,9 @@ class StoryParanormal(mainstory.Story):
 
 class StoryPrivateInvestigator(mainstory.Story):
     def __init__(self):
-        super().__init__()
         self.special_use = settings.investigator_searches
+        self.role = 'investigator'
+        super().__init__()
 
     # FOYER
     def foyer(self):
@@ -166,17 +176,21 @@ class StoryPrivateInvestigator(mainstory.Story):
 
         self.foyer_minigame_result = None
         self.display_rooms()
-    
+
     # STUDY
     def study(self):
         super().study()
 
         if self.study_minigame_result == True:
+            self.found_brochure = True
             print('''
-        You examine the vent slats. They are bent outward. You crack the  safe
-        and find architectural sketches of the vent system, drawn  in  crayon.
-        The murder was committed from inside the wall  while  the  victim  was
-        sedated.
+        The safe door swings open. Among  the  legal  documents,  you  find  a
+        glossy brochure for a strict international reform school. You note the
+        date on the postmark: it was delivered the very morning of the murder.
+        Unlike the other suspects' motives, which were  simmering  for  years,
+        this was an immediate trigger. You see the bent vent slats behind  the
+        desk and realize the chair Alistair died in was  perfectly  positioned
+        for an attack from the wall.
         \n    PRESS ENTER TO CONTINUE''')
             input('')
         elif self.study_minigame_result == False:
@@ -240,9 +254,9 @@ class StoryPrivateInvestigator(mainstory.Story):
         super().library()
 
         if self.library_minigame_result == True:
+            self.found_glove = True
             print('''
-        You hear the  sound  of  small, frantic  breathing  inside  the  wall.
-        "The You shine your light into the duct. The dust has  been  disturbed
+        The You shine your light into the duct. The dust has  been  disturbed
         by small hands and knees. You find a Size 4 glove snagged on  a  bolt.
         This isn't a vent; it's a highway for a ghost that breathes.
         \n    PRESS ENTER TO CONTINUE''')
@@ -257,7 +271,50 @@ class StoryPrivateInvestigator(mainstory.Story):
         self.library_minigame_result = None
         self.display_rooms()
 
+    def display_rooms(self):
+        while True:
+            if self.special_use > 0 and self.searching:
+                self.searching = False
+                choice = input('''Use Authority Check? (Remaining: 1)''').lower()
+                if choice == 'y' or choice == 'yes':
+                    self.special_use -= 1
+                    match self.current_location:
+                        case 'library':
+                            print('''
+        You rub the  fabric  between  your  fingers.  It’s  cheap,  reinforced
+        cotton—the exact grade used in  local  school  uniforms.  You  find  a
+        faint, ink-stamped 'L' on the inner wrist. This isn't  just  a  'small
+        person'; this is evidence  of  a  child  meticulously  navigating  the
+        manor's guts
+                            \n    PRESS ENTER TO CONTINUE''')
+                            input('')
+                            break
+                        case 'study':
+                            print('''
+        You rub the  fabric  between  your  fingers.  It’s  cheap,  reinforced
+        You examine the brochure under your magnifying  glass.  You  notice  a
+        wax-like residue on the  pages—remnants  of  a  child's  crayon.  More
+        importantly,  you  see  the  enrollment  form  is  already  signed  by
+        Alistair. Your professional instinct connects  the  dots:  the  killer
+        didn't just find this; they were in the room when Alistair signed  his
+        own death warrant.
+                            \n    PRESS ENTER TO CONTINUE''')
+                            input('')
+                            break
+                elif choice == 'n' or choice == 'no':
+                    break
+                else:
+                    print('Please answer with \'yes\' or \'no\'.')
+            else:
+                break
+                    
+        super().display_rooms()
+
 class StoryBuyer(mainstory.Story):
+    def __init__(self):
+        self.role = 'buyer'
+        super().__init__()
+
     # FOYER
     def foyer(self):
         super().foyer()
@@ -284,11 +341,13 @@ class StoryBuyer(mainstory.Story):
         super().study()
 
         if self.study_minigame_result == True:
+            self.found_brochure = True
             print('''
-        You open the safe using the  code  from  the  blueprint. Inside  is  a
-        Disinheritance Deed. Arthur was going to be homeless; Lily  was  going
-        to be locked away. Both had a reason to want him  dead, but  only  one
-        had the map.
+        You use the safe code found in your  hidden  blueprints.  Inside,  the
+        brochure explains why the room was so carefully  mapped.  Lily  wasn't
+        killing for money; she was protecting her territory. You  realize  the
+        'monster' the lawyers were paid to hide is still here, and she  killed
+        to ensure she would never have to leave.
         \n    PRESS ENTER TO CONTINUE''')
             input('')
         elif self.study_minigame_result == False:
@@ -351,11 +410,15 @@ class StoryBuyer(mainstory.Story):
         super().library()
 
         if self.library_minigame_result == True:
+            self.found_glove = True
+
             print('''
-        You hear the sound of small, frantic breathing inside  the  wall. "The
-        The blueprint reveals  the  truth:  this  vent  connects  the  Library
-        directly to the Study chair. You find a small  latch  on  the  inside.
-        Someone was moving through your house like a parasite.
+        You consult your blueprints and realize this vent isn't just for  air;
+        it’s a structural blind spot that connects the Library directly to the
+        Study chair. Finding this tiny glove confirms your  fear:  someone  of
+        small stature has been moving through the very  veins  of  your  house
+        like a parasite.
+
         \n    PRESS ENTER TO CONTINUE''')
             input('')
 
