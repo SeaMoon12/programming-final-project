@@ -9,7 +9,7 @@ bedroom_searches = 3
 kitchen_searches = 3
 library_searches = 3
 nursery_searches = 3
-investigator_searches = 1
+investigator_searches = 100
 
 # Dialogues for before the minigame
 foyer_dialogue = '''        A dark, brownish spray patterns the peeling wallpaper near the  stairs.
@@ -42,4 +42,4 @@ wordle_answer = 'plant'
 numbrle_answer = 4261
 anagram_answer = 'stature'
 cryptic_answer = None
-riddle_answer = None
+riddle_answer = ['liquor flask', 'knife', 'sugar']

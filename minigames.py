@@ -306,9 +306,24 @@ class Minigames:
             return False
 
     def riddles(self):
-        print('running game riddles')
-        succeed = input('y/n')
-        if succeed == 'y':
-            return True
-        elif succeed == 'n':
-            return False
+        riddles_list = [
+            ("I have a neck but no head, and I hold the spirit of Arthur. What am I?", settings.riddle_answer[0]),
+            ("I am sharp and deadly, used to cut and slice, found in the kitchen where the maid works. What am I?", settings.riddle_answer[1]),
+            ("I am small and sweet, spilled on the counter, near the flask of Arthur's favorite. What am I?", settings.riddle_answer[2])
+        ]
+        chosen_riddle, correct_answer = random.choice(riddles_list)
+        print(f'''        {chosen_riddle}
+        You only have 5 chances to guess the riddle, if you  fail  you  won't  be
+        able to obtain the clue.Think wisely before answering, the fate  is  in
+        your hand
+        ''')
+
+        answer = input("Write your answer: ").lower()
+
+        for chances in range(4):
+            if answer == correct_answer:
+                print('CORRECT')
+                return True
+            elif answer != correct_answer:
+                answer = input(colored('The answer is still incorrect, try again:\n','red'))
+        return False

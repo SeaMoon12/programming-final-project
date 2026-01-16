@@ -60,10 +60,9 @@ class StoryParanormal(mainstory.Story):
         if self.study_minigame_result == True:
             self.found_brochure = True
             print('''
-        You examine the vent slats. They are bent outward. You crack the  safe
         You sit in the chair. Suddenly, you can't move. Your limbs  are  lead.
         You hear a click from the wall behind you. "I'm  fixing you, Grandpa."
-        You find a Boarding School Brochure inside the  safe-Alistair’s  death
+        You find a boarding school brochure inside the  safe-Alistair’s  death
         warrant.
         \n    PRESS ENTER TO CONTINUE''')
             input('')
@@ -175,7 +174,6 @@ class StoryPrivateInvestigator(mainstory.Story):
         \n    PRESS ENTER TO CONTINUE''')
             input('')
 
-        self.foyer_minigame_result = None
         self.display_rooms()
 
     # STUDY
@@ -202,7 +200,6 @@ class StoryPrivateInvestigator(mainstory.Story):
         \n    PRESS ENTER TO CONTINUE''')
             input('')
 
-        self.study_minigame_result = None
         self.display_rooms()
 
     # BEDROOM
@@ -226,7 +223,6 @@ class StoryPrivateInvestigator(mainstory.Story):
         \n    PRESS ENTER TO CONTINUE''')
             input('')
 
-        self.bedroom_minigame_result = None
         self.display_rooms()
 
     # KITCHEN
@@ -249,7 +245,6 @@ class StoryPrivateInvestigator(mainstory.Story):
         \n    PRESS ENTER TO CONTINUE''')
             input('')
 
-        self.kitchen_minigame_result = None
         self.display_rooms()
 
     # LIBRARY
@@ -259,7 +254,7 @@ class StoryPrivateInvestigator(mainstory.Story):
         if self.library_minigame_result == True:
             self.found_glove = True
             print('''
-        The You shine your light into the duct. The dust has  been  disturbed
+        You shine your light  into  the  duct.  The dust  has  been  disturbed
         by small hands and knees. You find a Size 4 glove snagged on  a  bolt.
         This isn't a vent; it's a highway for a ghost that breathes.
         \n    PRESS ENTER TO CONTINUE''')
@@ -271,12 +266,18 @@ class StoryPrivateInvestigator(mainstory.Story):
         \n    PRESS ENTER TO CONTINUE''')
             input('')
 
-        self.library_minigame_result = None
         self.display_rooms()
 
     def display_rooms(self):
+        minigame_result = self.foyer_minigame_result or self.study_minigame_result or self.bedroom_minigame_result or self.kitchen_minigame_result or self.library_minigame_result
         while True:
-            if self.special_use > 0 and self.searching:
+            if self.special_use > 0 and self.searching and minigame_result:
+                self.foyer_minigame_result = False
+                self.study_minigame_result = False
+                self.bedroom_minigame_result = False
+                self.kitchen_minigame_result = False
+                self.library_minigame_result = False
+
                 self.searching = False
                 choice = input(f'''Use Authority Check? (Remaining: {self.special_use})''').lower()
                 if choice == 'y' or choice == 'yes':
@@ -364,7 +365,7 @@ class StoryBuyer(mainstory.Story):
         if self.foyer_minigame_result == True:
             print('''
         You consult the tattered blueprint. There’s a hollow space in the wall
-        - a step-stool nook. You realize someone small stoodhere to watch the
+        - a step-stool nook. You realize someone small stood here to watch the
         argument, or perhaps to participate in it.
         \n    PRESS ENTER TO CONTINUE''')
             input('')
