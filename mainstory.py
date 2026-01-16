@@ -5,6 +5,7 @@ import time
 
 import main
 import settings
+import dialogues
 import minigames
 
 def print(*args, **kwargs):
@@ -130,15 +131,7 @@ class Story:
         os.system('cls')
         self.current_location = 'foyer'
 
-        print('''
-    LOCATION: The Grand Foyer
-        The heavy oak doors seal behind you with a thud that vibrates in  your
-        marrow. To your left, a heap of discarded yellow  envelopes  addressed
-        to Arthur spills from a rusted mail slot-stamped with the red  ink  of
-        "Final Notice." A shattered porcelain vase lies across the  floor, its
-        shards like jagged teeth.
-
-    PRESS ENTER TO CONTINUE''')
+        print(dialogues.foyer['introduction'])
         input('')
 
         self.display_actions()
@@ -148,13 +141,7 @@ class Story:
         os.system('cls')
         self.current_location = 'study'
 
-        print('''
-    LOCATION: The Private Study
-        Two porcelain teacups sit on the desk, the residue smelling of  bitter
-        almonds. A shredded Will lies in a heap of confetti.  The  high-backed
-        chair sits facing away from the door, towards the wall.
-
-    PRESS ENTER TO CONTINUE''')
+        print(dialogues.study['introduction'])
         input('')
 
         self.display_actions()
@@ -164,13 +151,7 @@ class Story:
         os.system('cls')
         self.current_location = 'bedroom'
 
-        print('''
-    LOCATION: The Master Bedroom
-        Moth-eaten curtains hang like flayed skin. A half-packed suitcase sits
-        open with a one-way ticket to Paris. You can feel the panic of a woman
-        who was ready to run.
-
-    PRESS ENTER TO CONTINUE''')
+        print(dialogues.bedroom['introduction'])
         input('')
 
         self.display_actions()
@@ -180,15 +161,7 @@ class Story:
         os.system('cls')
         self.current_location = 'kitchen'
 
-        print('''
-    LOCATION: The Kitchen
-        The scent of rosemary has been  replaced  by  the  stench  of  grease.
-        Moonlight reflects off stainless steel knives-all clean, all  present.
-        A liquor flask with Arthur's initials lies near a spilled sugar  bowl.
-        On the counter sits a burnt  menu  for  a  "Celebratory Dinner"  dated
-        the night of the murder.
-
-    PRESS ENTER TO CONTINUE''')
+        print(dialogues.kitchen['introduction'])
         input('')
 
         self.display_actions()
@@ -198,13 +171,7 @@ class Story:
         os.system('cls')
         self.current_location = 'library'
 
-        print('''
-    LOCATION: The Library
-        Towering shelves lean inward like judges. A book on  'The  Biology  of
-        Predators' lies open. On the desk, a secret  lover’s  photograph  lies
-        face down, the lawyer’s smile curling in the dampness.
-
-    PRESS ENTER TO CONTINUE''')
+        print(dialogues.library['introduction'])
         input('')
 
         self.display_actions()
@@ -214,13 +181,7 @@ class Story:
         os.system('cls')
         self.current_location = 'nursery'
 
-        print('''
-    LOCATION: The Nursery
-        The bookshelf slides back. The air is freezing and smells of lavender.
-        A detailed dollhouse sits in the center. Dead butterflies  are  pinned
-        to the walls with surgical precision.
-
-    PRESS ENTER TO CONTINUE\n''')
+        print(dialogues.nursery['introduction'])
 
         self.display_actions()
 
@@ -231,7 +192,7 @@ class Story:
             case 'foyer':
                 if self.foyer_searches > 0:
                     self.foyer_searches -= 1
-                    print(settings.foyer_dialogue)
+                    print(dialogues.foyer['minigame_intro'])
                     input('')
                     self.foyer_minigame_result = minigames.Minigames().anagram()
                 else:
@@ -239,7 +200,7 @@ class Story:
             case 'study':
                 if self.study_searches > 0:
                     self.study_searches -= 1
-                    print(settings.study_dialogue)
+                    print(dialogues.study['minigame_intro'])
                     input('')
                     self.study_minigame_result = minigames.Minigames().numbrle()
                 else:
@@ -247,7 +208,7 @@ class Story:
             case 'bedroom':
                 if self.bedroom_searches > 0:
                     self.bedroom_searches -= 1
-                    print(settings.bedroom_dialogue)
+                    print(dialogues.bedroom['minigame_intro'])
                     input('')
                     self.bedroom_minigame_result = minigames.Minigames().wordle()
                 else:
@@ -255,7 +216,7 @@ class Story:
             case 'library':
                 if self.library_searches > 0:
                     self.library_searches -= 1
-                    print(settings.library_dialogue)
+                    print(dialogues.library['minigame_intro'])
                     input('')
                     self.library_minigame_result = minigames.Minigames().hangman()
                 else:
@@ -263,7 +224,7 @@ class Story:
             case 'kitchen':
                 if self.kitchen_searches > 0:
                     self.kitchen_searches -= 1
-                    print(settings.kitchen_dialogue)
+                    print(dialogues.kitchen['minigame_intro'])
                     input('')
                     self.kitchen_minigame_result = minigames.Minigames().riddles()
                 else:
