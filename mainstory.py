@@ -66,7 +66,7 @@ class Story:
 
         print('''
     THE BLACKWOOD GAZETTE
-    Vol. LXVIII — No. 242 | Tuesday, October 14, 2010 | Price: £1.50
+    Vol. LXVIII - No. 242 | Tuesday, October 14, 2010 | Price: £1.50
 
         ======== TRAGEDY AT BLACKWOOD MANOR: LORD ALISTAIR FOUND DEAD ========
           POLICE PROBE "CRIME OF PASSION" IN LOCKED-ROOM MYSTERY
@@ -85,8 +85,8 @@ class Story:
                 tea. According to police reports, the study  door  was  locked
                 from the  inside.  Investigators  state  that  Lord  Blackwood
                 succumbed to a single, fatal puncture wound to  the  neck. The
-                weapon—believed to be a silver letter opener  from the  Lord’s
-                own  desk—remains  missing.  Detective  Inspector  Graves  has
+                weapon-believed to be a silver letter opener  from the  Lord’s
+                own  desk-remains  missing.  Detective  Inspector  Graves  has
                 characterized the slaying as a "crime of passion," citing  the
                 intimate nature of the attack.
 
@@ -97,7 +97,7 @@ class Story:
                     - Arthur Blackwood (Son): The  heir  apparent  provided  a
                       confirmed alibi at the Royal  Casino. However, witnesses
                       noted Arthur stepped out for "an hour  of air"  at  3:00
-                      AM—the estimated time of the struggle.
+                      AM-the estimated time of the struggle.
 
                     - Lady Elara Blackwood (Wife): Lady  Elara  maintains  she
                       was asleep in her separate wing of the  manor.  With  no
@@ -116,7 +116,7 @@ class Story:
                 gaps in the family's alibis, officials cited a "total lack  of
                 forensic evidence" to move forward. The Blackwood fortune  now
                 hangs in limbo, as the family prepares  for  a  lengthy  legal
-                battle over the estate—a shadow that will loom over the  manor
+                battle over the estate-a shadow that will loom over the  manor
                 until a new owner dares to claim it.
 
     PRESS ENTER TO CONTINUE
@@ -134,7 +134,7 @@ class Story:
     LOCATION: The Grand Foyer
         The heavy oak doors seal behind you with a thud that vibrates in  your
         marrow. To your left, a heap of discarded yellow  envelopes  addressed
-        to Arthur spills from a rusted mail slot—stamped with the red  ink  of
+        to Arthur spills from a rusted mail slot-stamped with the red  ink  of
         "Final Notice." A shattered porcelain vase lies across the  floor, its
         shards like jagged teeth.
 
@@ -183,7 +183,7 @@ class Story:
         print('''
     LOCATION: The Kitchen
         The scent of rosemary has been  replaced  by  the  stench  of  grease.
-        Moonlight reflects off stainless steel knives—all clean, all  present.
+        Moonlight reflects off stainless steel knives-all clean, all  present.
         A liquor flask with Arthur's initials lies near a spilled sugar  bowl.
         On the counter sits a burnt  menu  for  a  "Celebratory Dinner"  dated
         the night of the murder.
@@ -317,13 +317,20 @@ class Story:
         loc_wo_cur = self.all_locations.copy()
         loc_wo_cur.remove(self.current_location)
         can_accuse = False
+        has_not_visited = None
+        has_visited = None
 
         # Check wheether player can accuse
         for room in self.all_locations:
             if room not in self.visited_locations:
-                can_accuse = False
+                has_not_visited = True
             else:
-                can_accuse = True
+                has_visited = True
+        if has_not_visited:
+            can_accuse = False
+        else:
+            can_accuse = True
+
         if can_accuse == True:
             print(colored('''\nYou have visited all rooms. You can now accuse the killer.\n''', 'green'))
 
@@ -364,6 +371,8 @@ class Story:
             # for debugging purposes
             elif room == 'visits':
                 print(self.visited_locations)
+            elif room == 'locations':
+                print(self.all_locations)
             elif room == 'visit all':
                 print('You have visited all locations.')
                 self.visited_locations = self.all_locations
@@ -401,33 +410,37 @@ class Story:
                 print(colored('Invalid input. Please answer with \'y\' or \'n\'.', 'red'))
 
     def accuse(self):
-        if self.found_glove and self.found_brochure:
-            choice = input('''
-    Who would you like to accuse?
+        while True:
+            if self.found_glove and self.found_brochure:
+                choice = input('''
+        Who would you like to accuse?
 
-        1. Arthur
-        2. Elara
-        3. Lily
-            
-    ''').lower()
-        else:
-            choice = input('''
-    Who would you like to accuse?
+            1. Arthur
+            2. Elara
+            3. Lily
+                
+        ''').lower()
+            else:
+                choice = input('''
+        Who would you like to accuse?
 
-        1. Arthur
-        2. Elara
-            
-    ''').lower()
+            1. Arthur
+            2. Elara
+                
+        ''').lower()
 
-        if choice == 'arthur' or choice == '1':
-            print('Wrong choice!')
-            self.replay()
-        elif choice == 'elara' or choice == '2':
-            print('Wrong choice!')
-            self.replay()
-        elif (choice == 'lily' or choice == '3') and self.found_brochure and self.found_glove:
-            print('Congratulations, you picked the right killer.')
-            self.replay()
+            if choice == 'arthur' or choice == '1':
+                print('Wrong choice!')
+                self.replay()
+            elif choice == 'elara' or choice == '2':
+                print('Wrong choice!')
+                self.replay()
+            elif (choice == 'lily' or choice == '3') and self.found_brochure and self.found_glove:
+                print('Congratulations, you picked the right killer.')
+                self.replay()
+            else:
+                print('Invalid Choice. Please enter according to the options provided.')
+                continue
 
     def replay(self):
         choice = input('Would you like to try again?')

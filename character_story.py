@@ -63,7 +63,7 @@ class StoryParanormal(mainstory.Story):
         You examine the vent slats. They are bent outward. You crack the  safe
         You sit in the chair. Suddenly, you can't move. Your limbs  are  lead.
         You hear a click from the wall behind you. "I'm  fixing you, Grandpa."
-        You find a Boarding School Brochure inside the  safe—Alistair’s  death
+        You find a Boarding School Brochure inside the  safe-Alistair’s  death
         warrant.
         \n    PRESS ENTER TO CONTINUE''')
             input('')
@@ -161,10 +161,11 @@ class StoryPrivateInvestigator(mainstory.Story):
 
         if self.foyer_minigame_result == True:
             print('''
-        You click your pen, measuring the arc of  the  spray.  "Physics  don't
-        lie," you mutter. The height is exactly 36 inches. Arthur  is  a  head
-        taller than his father. Whoever caused this splatter was  either  very
-        short or positioned in the shadows.
+        You click your pen, measuring the arc of the brownish  spray.  Physics
+        don't lie: the height is exactly 36 inches. You note  that  Arthur  is
+        nearly six feet tall. While he was seen  arguing  here,  the  physical
+        trajectory of this blood doesn't align with his height or  a  standing
+        struggle.
         \n    PRESS ENTER TO CONTINUE''')
             input('')
         elif self.foyer_minigame_result == False:
@@ -210,9 +211,10 @@ class StoryPrivateInvestigator(mainstory.Story):
 
         if self.bedroom_minigame_result == True:
             print('''
-        You pull up the board. You find the letter opener and Arthur’s  bloody
-        IOU. It’s too perfect. "A frame-up," you mutter. You  find  a  Size  4
-        footprint in the dust beneath the floorboards.
+        You pull up the loose floorboard. Beneath it lies  the  bloody  letter
+        opener and Arthur’s bloody IOU. It’s the perfect crime scene,  exactly
+        as described in the  8-year-old  cold  case  file.  'A frame-up,'  you
+        mutter, noting how conveniently  these  items  are  grouped  together.
 
         \n    PRESS ENTER TO CONTINUE''')
             input('')
@@ -233,10 +235,11 @@ class StoryPrivateInvestigator(mainstory.Story):
 
         if self.kitchen_minigame_result == True:
             print('''
-        You pry the hatch open with a crowbar. Inside, among the gears,  is  a
-        Bribe Ledger. It shows the family lawyer paid  the  police  to  ignore
-        "child-sized footprints" found in this kitchen. The corruption runs as
-        deep as the grease.
+        You pry the hatch open  with  a  crowbar.  Inside  the  gears  of  the
+        dumbwaiter, you find a Bribe Ledger. It contains records  of  payments
+        made by the family lawyer to local  precincts  to  'overlook'  certain
+        details in the 2018 report. The names are redacted, but the intent  to
+        bury the truth is clear.
         \n    PRESS ENTER TO CONTINUE''')
             input('')
         elif self.kitchen_minigame_result == False:
@@ -275,29 +278,68 @@ class StoryPrivateInvestigator(mainstory.Story):
         while True:
             if self.special_use > 0 and self.searching:
                 self.searching = False
-                choice = input('''Use Authority Check? (Remaining: 1)''').lower()
+                choice = input(f'''Use Authority Check? (Remaining: {self.special_use})''').lower()
                 if choice == 'y' or choice == 'yes':
                     self.special_use -= 1
                     match self.current_location:
-                        case 'library':
+                        # FOYER
+                        case 'foyer':
                             print('''
-        You rub the  fabric  between  your  fingers.  It’s  cheap,  reinforced
-        cotton—the exact grade used in  local  school  uniforms.  You  find  a
-        faint, ink-stamped 'L' on the inner wrist. This isn't  just  a  'small
-        person'; this is evidence  of  a  child  meticulously  navigating  the
-        manor's guts
+        You apply a luminol reagent to the baseboards. The spray pattern isn't
+        just low; it’s static and concentrated. This wasn't  a  wound  from  a
+        fight; it was an arterial spray from a victim who was already down  or
+        a killer who was striking from a fixed, low position. You spot a faint
+        indentation in the floor dust where a heavy,  small  object-perhaps  a
+        step-stool-was recently placed and removed
                             \n    PRESS ENTER TO CONTINUE''')
                             input('')
                             break
+
+                        # STUDY
                         case 'study':
                             print('''
-        You rub the  fabric  between  your  fingers.  It’s  cheap,  reinforced
         You examine the brochure under your magnifying  glass.  You  notice  a
-        wax-like residue on the  pages—remnants  of  a  child's  crayon.  More
+        wax-like residue on the  pages-remnants  of  a  child's  crayon.  More
         importantly,  you  see  the  enrollment  form  is  already  signed  by
         Alistair. Your professional instinct connects  the  dots:  the  killer
         didn't just find this; they were in the room when Alistair signed  his
         own death warrant.
+                            \n    PRESS ENTER TO CONTINUE''')
+                            input('')
+                            break
+
+                        # BEDROOM
+                        case 'bedroom':
+                            print('''
+        You examine the letter opener with a magnifying lens. The blood on the
+        blade is clotted incorrectly for an 8-year-old stain; it looks like it
+        was applied much later to 'refresh' the evidence. You notice a Size  4
+        footprint in the undisturbed dust deep under the  joists.  The  killer
+        didn't just hide the weapon here; they've been returning to this spot,
+        perhaps to ensure the 'truth' remained exactly where  they  wanted  it
+        found.
+                            \n    PRESS ENTER TO CONTINUE''')
+
+                        # KITCHEN
+                        case 'kitchen':
+                            print('''
+        You flip to the back of the ledger and find a loose evidence  log.  It
+        details 'child-sized footprints' found in the kitchen grease that were
+        never photographed for the  official  file.  You  cross-reference  the
+        ledger's dates with the family travel records; while the  adults  were
+        accounted for, the 'little one' was always left behind in  the  manor.
+        The  corruption  wasn' t  protecting  the  son  or  the  wife-it   was
+        protecting the estate's image from the actions of a child.
+                            ''')
+
+                        # LIBRARY
+                        case 'library':
+                            print('''
+        You rub the  fabric  between  your  fingers.  It’s  cheap,  reinforced
+        cotton-the exact grade used in  local  school  uniforms.  You  find  a
+        faint, ink-stamped 'L' on the inner wrist. This isn't  just  a  'small
+        person'; this is evidence  of  a  child  meticulously  navigating  the
+        manor's guts.
                             \n    PRESS ENTER TO CONTINUE''')
                             input('')
                             break

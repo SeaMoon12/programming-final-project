@@ -22,7 +22,7 @@ study_dialogue = '''        Behind the chair is another wall-vent. It sits at th
 bedroom_dialogue = '''        A floorboard near the vanity is loose. A faint, greasy smear marks the
         edge.
         \n    PRESS ENTER TO CONTINUE'''
-kitchen_dialogue = '''        A small service hatch—a dumbwaiter—is  rusted  shut  in  the  wall. It
+kitchen_dialogue = '''        A small service hatch-a dumbwaiter-is  rusted  shut  in  the  wall. It
         was the heart of the home's service, but now it feels  like  a  choked
         throat.
         \n    PRESS ENTER TO CONTINUE'''
@@ -37,9 +37,9 @@ nursery_dialogue = '''        A leather-bound diary sits on a small white chair.
 numbrle_chances = 10
 
 # Answers to the minigames
-hangman_answer = None
-wordle_answer = None
+hangman_answer = 'ventilation'
+wordle_answer = 'plant'
 numbrle_answer = 4261
-anagram_answer = None
+anagram_answer = 'stature'
 cryptic_answer = None
 riddle_answer = None

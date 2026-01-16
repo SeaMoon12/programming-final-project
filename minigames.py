@@ -107,7 +107,7 @@ class Minigames:
               |
         =========''']
 
-        chosen_word = str('ventilation')
+        chosen_word = settings.hangman_answer
 
         blank = ""
 
@@ -198,7 +198,7 @@ class Minigames:
         with open('guesses.txt', 'r') as file:
             guesses = [line.strip() for line in file]
         #this opens the dictionary that contains all the legal wordle words
-        answers = ('plant')
+        answers = settings.wordle_answer
         used_words  = []
         invalid = []
         
@@ -278,7 +278,10 @@ class Minigames:
             white = 0
 
     def anagram(self):
-        print('''        Turn these letters to make new existing word: A-S-T-U-T-E-R.
+        answer_list = list(settings.anagram_answer.upper())
+        random.shuffle(answer_list)
+
+        print(f'''        Turn these letters to make new existing word: {'-'.join(answer_list)}.
         You only have 5 chances to guess the word, if you  fail  you  won't  be
         able to obtain the clue.Think wisely before answering, the fate  is  in
         your hand
@@ -287,10 +290,10 @@ class Minigames:
         answer= input("Write your answer: ").lower()
 
         for chances in range(4):
-            if answer == "stature":
+            if answer == settings.anagram_answer:
                 print('CORRECT')
                 return True
-            elif answer != "stature":
+            elif answer != settings.anagram_answer:
                 answer = input(colored('The answer is still incorrect, try again:\n','red'))
         return False
 
