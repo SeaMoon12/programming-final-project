@@ -1,14 +1,12 @@
 foyer = {
     'introduction':
-        '''
-    LOCATION: The Grand Foyer
+        '''\n    LOCATION: The Grand Foyer
         The heavy oak doors seal behind you with a thud that vibrates in  your
         marrow. To your left, a heap of discarded yellow  envelopes  addressed
         to Arthur spills from a rusted mail slot-stamped with the red  ink  of
         "Final Notice." A shattered porcelain vase lies across the  floor, its
         shards like jagged teeth.
-
-    PRESS ENTER TO CONTINUE''',
+        \n    PRESS ENTER TO CONTINUE''',
     'minigame_intro':
         '''        A dark, brownish spray patterns the peeling wallpaper near the  stairs.
         It feels like a silent scream frozen in time.
@@ -16,33 +14,29 @@ foyer = {
     'success': {
         'paranormal':
             '''
-        The air turns ice-cold. A whisper crawls into your ear: "He... knelt...
-        begging for gold... but the shadow stood above us  both."  You  realize
-        the blood splatter stops at  three  feet.  Arthur  was  kneeling  here,
-        begging, but he wasn't the one who bled.
+        The air turns ice-cold. You hear a whisper: "He...  knelt...  but  the
+        shadow stood above us both.". You  notice  the  blood  splatter  stops
+        abruptly at three feet, suggesting someone was present who didn't  fit
+        the scale of the room.
         \n    PRESS ENTER TO CONTINUE''',
         'investigator':
             '''
-        You click your pen, measuring the arc of the brownish  spray.  Physics
-        don't lie: the height is exactly 36 inches. You note  that  Arthur  is
-        nearly six feet tall. While he was seen  arguing  here,  the  physical
-        trajectory of this blood doesn't align with his height or  a  standing
-        struggle.
+        You measure the spray. "Physics don't lie," you mutter. The height  is
+        exactly 36 inches. You note that Alistair’s son,  Arthur,  is  a  head
+        taller than his father, making this  trajectory  a  puzzling  anomaly.
         \n    PRESS ENTER TO CONTINUE''',
         'investigator_special':
             '''
-        You apply a luminol reagent to the baseboards. The spray pattern isn't
-        just low; it’s static and concentrated. This wasn't  a  wound  from  a
-        fight; it was an arterial spray from a victim who was already down  or
-        a killer who was striking from a fixed, low position. You spot a faint
-        indentation in the floor dust where a heavy,  small  object-perhaps  a
-        step-stool-was recently placed and removed
-                            \n    PRESS ENTER TO CONTINUE''',
+        You  apply  a  forensic  reagent.  The  spray  isn't  just  low;  it’s
+        concentrated and static. This wasn't a wound from a standing struggle;
+        it was a strike delivered to a victim already down or by someone using
+        a fixed, low vantage point.
+        \n    PRESS ENTER TO CONTINUE''',
         'buyer':
             '''
-        You consult the tattered blueprint. There’s a hollow space in the wall
-        - a step-stool nook. You realize someone small stood here to watch the
-        argument, or perhaps to participate in it.
+        You consult the blueprint.  There’s  a  hollow  space  in  the  wall—a
+        step-stool nook. You realize the house  was  designed  to  accommodate
+        someone who needed a literal boost to  see  the  world  at  eye-level.
         \n    PRESS ENTER TO CONTINUE'''
     },
     'fail':
@@ -54,13 +48,11 @@ foyer = {
 
 study = {
     'introduction':
-        '''
-    LOCATION: The Private Study
+        '''\n    LOCATION: The Private Study
         Two porcelain teacups sit on the desk, the residue smelling of  bitter
         almonds. A shredded Will lies in a heap of confetti.  The  high-backed
         chair sits facing away from the door, towards the wall.
-
-    PRESS ENTER TO CONTINUE''',
+        \n    PRESS ENTER TO CONTINUE''',
     'minigame_intro':
         '''        Behind the chair is another wall-vent. It sits at the exact  level  of
         a seated man’s neck. A nearby  floor  safe  remains  the  only  locked
@@ -69,37 +61,36 @@ study = {
     'success': {
         'paranormal':
             '''
-        You sit in the chair. Suddenly, you can't move. Your limbs  are  lead.
-        You hear a click from the wall behind you. "I'm  fixing you, Grandpa."
-        You find a boarding school brochure inside the  safe-Alistair’s  death
-        warrant.
+        You sit in the chair and feel a heavy lethargy. A  click  echoes  from
+        the wall. "I'm fixing you, Grandpa.". Inside  the  safe,  you  find  a
+        boarding school brochure—a plan to send someone far away.
         \n    PRESS ENTER TO CONTINUE''',
         'investigator':
             '''
-        The safe door swings open. Among  the  legal  documents,  you  find  a
-        glossy brochure for a strict international reform school. You note the
-        date on the postmark: it was delivered the very morning of the murder.
-        Unlike the other suspects' motives, which were  simmering  for  years,
-        this was an immediate trigger. You see the bent vent slats behind  the
-        desk and realize the chair Alistair died in was  perfectly  positioned
-        for an attack from the wall.
+        The safe door swings open with a heavy click.  Inside,  you  find  the
+        boarding school brochure, postmarked the very morning of the  murder—a
+        clear catalyst for the night's events. Tucked behind it  are  detailed
+        architectural sketches of the manor’s ventilation  system.  While  the
+        measurements are professional, the  medium  is  unsettling:  they  are
+        rendered entirely in brightly colored crayon. You note that the  vents
+        behind the desk are slightly bent, suggesting the  perpetrator  had  a
+        perfect, albeit cramped, view of Alistair's chair.
         \n    PRESS ENTER TO CONTINUE''',
         'investigator_special':
             '''
-        You examine the brochure under your magnifying  glass.  You  notice  a
-        wax-like residue on the  pages-remnants  of  a  child's  crayon.  More
-        importantly,  you  see  the  enrollment  form  is  already  signed  by
-        Alistair. Your professional instinct connects  the  dots:  the  killer
-        didn't just find this; they were in the room when Alistair signed  his
-        own death warrant.
-                            \n    PRESS ENTER TO CONTINUE''',
+        You take a closer look at the  documents.  The  brochure  contains  an
+        enrollment form already signed by Alistair, proving  the  decision  to
+        send someone away was final. On the sketches,  your  magnifying  glass
+        reveals a wax-like residue and a faint,  small  smudge  of  ink—not  a
+        fingerprint, but the side of a small hand. It  suggests  the  'artist'
+        was in this room, watching from the shadows, as  Alistair  signed  the
+        very papers that would have removed them from this house.
+        \n    PRESS ENTER TO CONTINUE''',
         'buyer':
             '''
-        You use the safe code found in your  hidden  blueprints.  Inside,  the
-        brochure explains why the room was so carefully  mapped.  Lily  wasn't
-        killing for money; she was protecting her territory. You  realize  the
-        'monster' the lawyers were paid to hide is still here, and she  killed
-        to ensure she would never have to leave.
+        You find a disinheritance deed and a boarding school brochure  in  the
+        safe. Arthur was to be left with nothing, and  Lily  was  to  be  sent
+        away. You realize the house was  being  cleared  of  its  inhabitants.
         \n    PRESS ENTER TO CONTINUE'''
     },
     'fail':
@@ -112,13 +103,11 @@ study = {
 
 bedroom = {
     'introduction':
-        '''
-    LOCATION: The Master Bedroom
+        '''\n    LOCATION: The Master Bedroom
         Moth-eaten curtains hang like flayed skin. A half-packed suitcase sits
         open with a one-way ticket to Paris. You can feel the panic of a woman
         who was ready to run.
-
-    PRESS ENTER TO CONTINUE''',
+        \n    PRESS ENTER TO CONTINUE''',
     'minigame_intro':
         '''        A floorboard near the vanity is loose. A faint, greasy smear marks the
         edge.
@@ -126,35 +115,30 @@ bedroom = {
     'success': {
         'paranormal':
             '''
-        You hear Elara’s sobbing. "I didn't do it! I only wanted him to sleep!"
-        You reach under the board and find  a  bloody  letter  opener. But  the
-        blood feels... wrong. It’s a stage prop, meant to be found.
-
+        You hear sobbing. "I only wanted him to  sleep!". You  find  a  bloody
+        letter opener, but it feels like a stage prop, intentionally placed to
+        be discovered.
         \n    PRESS ENTER TO CONTINUE''',
         'investigator':
             '''
-        You pull up the loose floorboard. Beneath it lies  the  bloody  letter
-        opener and Arthur’s bloody IOU. It’s the perfect crime scene,  exactly
-        as described in the  8-year-old  cold  case  file.  'A frame-up,'  you
-        mutter, noting how conveniently  these  items  are  grouped  together.
-
+        You pull up the board. You find the letter opener and Arthur’s  bloody
+        IOU. You mutter, 'A frame-up.' The placement is  too  deliberate,  and
+        the weapon doesn't match the forensic photos of the wound. You  notice
+        a faint disturbance in the dust beneath the floorboards.
         \n    PRESS ENTER TO CONTINUE''',
         'investigator_special':
             '''
-        You examine the letter opener with a magnifying lens. The blood on the
-        blade is clotted incorrectly for an 8-year-old stain; it looks like it
-        was applied much later to 'refresh' the evidence. You notice a Size  4
-        footprint in the undisturbed dust deep under the  joists.  The  killer
-        didn't just hide the weapon here; they've been returning to this spot,
-        perhaps to ensure the 'truth' remained exactly where  they  wanted  it
-        found.
-                            \n    PRESS ENTER TO CONTINUE''',
+        You measure the disturbance in the dust.  It  is  a  distinct  Size  4
+        footprint. This isn't just a hiding spot; it’s a  junction  where  the
+        ventilation system meets the floorboards. The 'evidence' wasn't hidden
+        by the suspects; it was delivered here from within the walls to ensure
+        you found exactly what the house wanted you to see.
+        \n    PRESS ENTER TO CONTINUE''',
         'buyer':
             '''
         You  find  the  letter  opener.  According  to  your  blueprint,  this
         floorboard is directly above a vent  junction.  Someone  dropped  this
-        here from the Library to ensure Elara would take the fall.
-
+        here from the walls to ensure the blame fell on the wife.
         \n    PRESS ENTER TO CONTINUE'''
     },
     'fail':
@@ -167,15 +151,13 @@ bedroom = {
 
 kitchen = {
     'introduction':
-        '''
-    LOCATION: The Kitchen
+        '''\n    LOCATION: The Kitchen
         The scent of rosemary has been  replaced  by  the  stench  of  grease.
         Moonlight reflects off stainless steel knives-all clean, all  present.
         A liquor flask with Arthur's initials lies near a spilled sugar  bowl.
         On the counter sits a burnt  menu  for  a  "Celebratory Dinner"  dated
         the night of the murder.
-
-    PRESS ENTER TO CONTINUE''',
+        \n    PRESS ENTER TO CONTINUE''',
     'minigame_intro':
         '''        A small service hatch-a dumbwaiter-is  rusted  shut  in  the  wall. It
         was the heart of the home's service, but now it feels  like  a  choked
@@ -184,34 +166,29 @@ kitchen = {
     'success': {
         'paranormal':
             '''
-        You touch the iron door and hear the clinking of glass from the  past.
-        "A  spoonful  for  sleep...  a  spoonful  for  my  escape."  You  feel 
-        Elara's frantic heartbeat. Inside the hatch, you  find  empty  blister
-        packs of sleeping pills. She drugged him.
+        You hear the clinking of glass. "A spoonful for  sleep...  a  spoonful
+        for  my  escape."  Inside  the  dumbwaiter,  you  find  empty  blister
+        packs—someone ensured Alistair wouldn't wake up that night.
         \n    PRESS ENTER TO CONTINUE''',
         'investigator':
             '''
-        You pry the hatch open  with  a  crowbar.  Inside  the  gears  of  the
-        dumbwaiter, you find a Bribe Ledger. It contains records  of  payments
-        made by the family lawyer to local  precincts  to  'overlook'  certain
-        details in the 2018 report. The names are redacted, but the intent  to
-        bury the truth is clear.
+        You pry the hatch open. Inside is a Bribe Ledger showing  payments  to
+        ignore certain "physical evidence" found in this kitchen  eight  years
+        ago. The ledger suggests a cover-up, but the names of those  protected
+        remain blurred.
         \n    PRESS ENTER TO CONTINUE''',
         'investigator_special':
             '''
-        You flip to the back of the ledger and find a loose evidence  log.  It
-        details 'child-sized footprints' found in the kitchen grease that were
-        never photographed for the  official  file.  You  cross-reference  the
-        ledger's dates with the family travel records; while the  adults  were
-        accounted for, the 'little one' was always left behind in  the  manor.
-        The  corruption  wasn' t  protecting  the  son  or  the  wife-it   was
-        protecting the estate's image from the actions of a child.
-                            ''',
+        You find a loose evidence log in the ledger. It mentions  "child-sized
+        footprints" in the grease that were never photographed. The corruption
+        wasn't protecting the adults; it was protecting the family name from a
+        "small" truth.
+        \n    PRESS ENTER TO CONTINUE''',
         'buyer':
             '''
-        Your blueprint shows the dumbwaiter shaft runs parallel to the Library
-        vents. You find a discarded tea tin inside, hidden away. It  reeks  of
-        sedatives. You realize the "happy meal" Elara  prepared  was  a  trap.
+        You find a discarded tea tin reeking  of  sedatives.  Your  blueprints
+        show the dumbwaiter runs parallel to the  library.  The  house  wasn't
+        just a home; it was a delivery system for a quiet end.
         \n    PRESS ENTER TO CONTINUE'''
     },
     'fail':
@@ -223,13 +200,11 @@ kitchen = {
 
 library = {
     'introduction':
-        '''
-    LOCATION: The Library
+        '''\n    LOCATION: The Library
         Towering shelves lean inward like judges. A book on  'The  Biology  of
         Predators' lies open. On the desk, a secret  lover’s  photograph  lies
         face down, the lawyer’s smile curling in the dampness.
-
-    PRESS ENTER TO CONTINUE''',
+        \n    PRESS ENTER TO CONTINUE''',
     'minigame_intro':
         '''        A rectangular iron wall-vent sits low behind the  desk. The  floor  in
         front of it is polished clean, as if by many passing bodies.
@@ -237,34 +212,30 @@ library = {
     'success': {
         'paranormal':
             '''
-        As you touch the fabric, the air turns ice-cold. You don't just see  a
-        glove; you feel the small, frantic breathing of a child hiding in  the
-        dark. A whisper crawls into your ear: 'The walls have eyes... and I am
-        the eyes.' The glove feels like a physical piece of  a  haunting  that
-        hasn't yet left the manor.
-
+        You hear frantic breathing inside the wall. "The  walls  have  eyes...
+        and I am the eyes." You pull out  a  strand  of  white  silk—delicate,
+        like a child’s Sunday dress.
         \n    PRESS ENTER TO CONTINUE''',
         'investigator':
             '''
-        You shine your light  into  the  duct.  The dust  has  been  disturbed
-        by small hands and knees. You find a Size 4 glove snagged on  a  bolt.
-        This isn't a vent; it's a highway for a ghost that breathes.
+        You shine your light into the duct. The dust  has  been  disturbed  by
+        small hands and knees. You find a cotton glove snagged on a  bolt.  It
+        is remarkably small—a Size 4—which strikes you as an oddity given  the
+        stature of the primary adult suspects.
         \n    PRESS ENTER TO CONTINUE''',
         'investigator_special':
             '''
-        You rub the  fabric  between  your  fingers.  It’s  cheap,  reinforced
-        cotton-the exact grade used in  local  school  uniforms.  You  find  a
-        faint, ink-stamped 'L' on the inner wrist. This isn't  just  a  'small
-        person'; this is evidence  of  a  child  meticulously  navigating  the
-        manor's guts.
+        You examine the stitching. This isn't a  high-end  accessory;  it’s  a
+        reinforced cotton garment typically found in  local  school  uniforms.
+        You find a faint, ink-stamped initial  'L'  on  the  inner  wrist.  It
+        confirms that the person navigating these vents was someone  bound  by
+        the rules of a schoolhouse, not a socialite or a gambler.
                             \n    PRESS ENTER TO CONTINUE''',
         'buyer':
             '''
-        You consult your blueprints and realize this vent isn't just for  air;
-        it’s a structural blind spot that connects the Library directly to the
-        Study chair. Finding this tiny glove confirms your  fear:  someone  of
-        small stature has been moving through the very  veins  of  your  house
-        like a parasite.
+        The blueprint reveals a small latch on the inside of  the  vent.  This
+        vent connects directly to the study chair. Someone was moving  through
+        your house like a silent parasite.
 
         \n    PRESS ENTER TO CONTINUE'''
     },
@@ -277,24 +248,22 @@ library = {
 
 nursery = {
     'introduction':
-        '''
-    LOCATION: The Nursery
+        '''\n    LOCATION: The Nursery
         The bookshelf slides back. The air is freezing and smells of lavender.
         A detailed dollhouse sits in the center. Dead butterflies  are  pinned
         to the walls with surgical precision.
-
-    PRESS ENTER TO CONTINUE\n''',
+        \n    PRESS ENTER TO CONTINUE''',
     'minigame_intro':
         '''        A leather-bound diary sits on a small white chair. It is the heart  of
         the rot.
         \n    PRESS ENTER TO CONTINUE''',
     'success': 
         '''
-        The diary opens. 'Elara gave him the  sleep-tea.  Arthur  screamed  at
-        him. They are so loud. I used the silver  needle  tonight.  He  didn't
-        make a sound. Now I can stay in my house  forever.' You  realize  Lily
-        has been living in the walls for 8 years, watching you.
-
+        The diary is written in looping, childish  script.  One  entry  reads:
+        "They are so loud. I used the silver needle tonight to make it  quiet.
+        Now, the quiet will last forever.". You look at the dolls and  realize
+        they are all positioned to face the study wall, as if watching a  play
+        you weren't invited to.
         \n    PRESS ENTER TO CONTINUE''',
     'minigame_fail':
         '''
