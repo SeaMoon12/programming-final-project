@@ -279,12 +279,48 @@ class Minigames:
         return False
 
     def cryptic(self):
-        print('running game cryptic')
-        succeed = input('y/n')
-        if succeed == 'y':
-            return True
-        elif succeed == 'n':
-            return False
+        def get_atbash_cipher(text):
+            result = ""
+            for char in text.upper():
+                if 'A' <= char <= 'Z':
+                    
+            result += reversed_char
+        else:
+            result += char
+    return result
+
+def play_nursery_puzzle():
+    # 1. The specific answers you requested
+    answers = ["KINGDOM", "FOREVER", "CONTROL"]
+    
+    # 2. Randomly pick one answer
+    target_answer = random.choice(answers)
+    
+    # 3. Create the question by reversing the alphabet of the answer
+    # If the answer is 'KINGDOM', the question shown to the player is 'PRMTWLN'
+    cryptic_question = get_atbash_cipher(target_answer)
+
+    print("\n" + "="*50)
+    print("      --- THE NURSERY DIARY CIPHER ---")
+    print("="*50)
+    print(f"\nAcross the dusty page, the letters are mirrored...")
+    print(f"ENCRYPTED TEXT: {cryptic_question}")
+    print("\n(Hint: The girl saw the world in reverse. A=Z, B=Y...)")
+
+    # 4. User Input
+    attempt = input("\nDecode the truth: ").strip().upper()
+
+    if attempt == target_answer:
+        print("\n[SUCCESS] The lock clicks. The diary yields its secrets.")
+        # Trigger the Success Narration here
+        return True
+    else:
+        print("\n[FAILURE] The letters scramble. Your mind is too tired to see.")
+        # Trigger the Failure Narration here
+        return False
+
+# Start the game
+play_nursery_puzzle()
 
     def riddles(self):
         riddles_list = [
