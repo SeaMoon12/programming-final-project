@@ -1,61 +1,33 @@
 from termcolor import colored
 import os
 import sys
-import time
 
 import main
 import settings
 import dialogues
 import minigames
-
-def print(*args, **kwargs):
-    # Extract speed settings if provided, otherwise use defaults
-    speed = kwargs.pop('speed', settings.print_speed)
-    sep = kwargs.pop('sep', ' ')
-    end = kwargs.pop('end', '\n')
-    
-    # Combine all arguments into one string (mimicking standard print)
-    message = sep.join(map(str, args))
-    
-    for char in message:
-        sys.stdout.write(char)
-        sys.stdout.flush()
-        time.sleep(speed)
-    
-    # Print the ending (usually a newline)
-    sys.stdout.write(end)
-    sys.stdout.flush()
+from settings import slow_print as print
 
 # This will be the main storyline, choices that do not depend on the character chosen
 class Story:
     def __init__(self):
-        self.all_locations = ['foyer', 'study', 'bedroom', 'library', 'kitchen']
+        self.all_locations = []
+        for room in settings.room_config:
+            if 'isHidden' not in settings.room_config[room]:
+                self.all_locations.append(room)
+
         self.visited_locations = ['foyer']
         self.current_location = ''
 
+        self.actions = ['continue', 'deep search']
         self.searching = False
 
-        self.actions = ['continue', 'deep search']
+        self.minigame = minigames.Minigames()
+        self.minigame_result = False
 
-        # SEARCH LIMITS
-        self.foyer_searches = settings.foyer_searches
-        self.study_searches = settings.study_searches
-        self.bedroom_searches = settings.bedroom_searches
-        self.kitchen_searches = settings.kitchen_searches
-        self.library_searches = settings.library_searches
-        self.nursery_searches = settings.nursery_searches
-
-        # RESULTS FOR THE MINIGAME
-        self.foyer_minigame_result = None
-        self.study_minigame_result = None
-        self.bedroom_minigame_result = None
-        self.kitchen_minigame_result = None
-        self.library_minigame_result = None
-        self.nursery_minigame_result = None
-
-        # Key Evidence - If player don't have 2, cannot accuse Lily.
-        self.found_glove = False
         self.found_brochure = False
+        self.found_gloves = False
+        self.found_socks = False
 
         self.introduction()
 
@@ -65,121 +37,61 @@ class Story:
 
         print(dialogues.newspaper)
         input('')
+        self.rooms('foyer')
 
 # FUNCTION FOR ROOMS
-    def rooms(self, current_location, introduction_dialogue, success_dialogue, fail_dialogue):
+    def rooms(self, current_location):
         os.system('cls')
         self.current_location = current_location
+
+        config = settings.room_config.get(current_location)
+
+        intro = dialogues.rooms[current_location]['introduction']
+        character = self.__class__.__name__.replace('Story', '').lower()
+        print(character)
+        success = dialogues.rooms[current_location]['success'][character]
+        fail = dialogues.rooms[current_location]['fail']
         
-        print(introduction_dialogue)
+        print(intro)
         input('')
 
         self.display_actions()
 
-        match current_location:
-            case 'foyer': minigame_result = self.foyer_minigame_result
-            case 'study': minigame_result = self.study_minigame_result
-            case 'bedroom': minigame_result = self.bedroom_minigame_result
-            case 'kitchen': minigame_result = self.kitchen_minigame_result
-            case 'library': minigame_result = self.library_minigame_result
-            case 'nursery': minigame_result = self.nursery_minigame_result
+        if self.minigame_result:
+            print(success)
+            input()
+            if config.get('isKeyRoom'):
+                setattr(self, config['keyClue'], True)
 
-        if minigame_result == True and (self.current_location != 'library' and self.current_location != 'study'):
-            print(success_dialogue)
-            input('')
-        elif minigame_result == False and (self.current_location != 'library' and self.current_location != 'study'):
-            print(fail_dialogue)
+            if 'unlocks' in config:
+                self.all_locations.append(config['unlocks'])
+                print(colored(f"New Location Unlocked: {config['unlocks'].capitalize()}\n",'green'))
+        else:
+            print(fail)
+            input()
 
-        # IF LIBRARY (for obtain key clue)
-        if minigame_result == True and self.current_location == 'library':
-            self.found_glove = True
-
-            print(success_dialogue)
-            input('')
-
-        elif minigame_result == False and self.current_location == 'library':
-            print(fail_dialogue)
-            input('')
-
-        # IF STUDY (for obtain key clue)
-        if minigame_result == True and self.current_location == 'study':
-            self.found_brochure = True
-
-            print(success_dialogue)
-            input('')
-
-        elif minigame_result == False and self.current_location == 'study':
-            print(fail_dialogue)
-            input('')
-
-        minigame_result = None
         self.display_rooms()
 
 # == ACTIONS ==
     def search(self):
-        self.searching = True
-        match self.current_location:
-            case 'foyer':
-                if self.foyer_searches > 0:
-                    self.foyer_searches -= 1
-                    print(dialogues.foyer['minigame_intro'])
-                    input('')
-                    self.foyer_minigame_result = minigames.Minigames().anagram()
-                else:
-                    print(colored('Sorry, you have no more searches available for this room.','red'))
-            case 'study':
-                if self.study_searches > 0:
-                    self.study_searches -= 1
-                    print(dialogues.study['minigame_intro'])
-                    input('')
-                    self.study_minigame_result = minigames.Minigames().numbrle()
-                else:
-                    print(colored('Sorry, you have no more searches available for this room.','red'))
-            case 'bedroom':
-                if self.bedroom_searches > 0:
-                    self.bedroom_searches -= 1
-                    print(dialogues.bedroom['minigame_intro'])
-                    input('')
-                    self.bedroom_minigame_result = minigames.Minigames().wordle()
-                else:
-                    print(colored('Sorry, you have no more searches available for this room.','red'))
-            case 'library':
-                if self.library_searches > 0:
-                    self.library_searches -= 1
-                    print(dialogues.library['minigame_intro'])
-                    input('')
-                    self.library_minigame_result = minigames.Minigames().hangman()
-                else:
-                    print(colored('Sorry, you have no more searches available for this room.','red'))
-            case 'kitchen':
-                if self.kitchen_searches > 0:
-                    self.kitchen_searches -= 1
-                    print(dialogues.kitchen['minigame_intro'])
-                    input('')
-                    self.kitchen_minigame_result = minigames.Minigames().riddles()
-                else:
-                    print(colored('Sorry, you have no more searches available for this room.','red'))
-            case 'nursery':
-                if self.nursery_searches > 0:
-                    self.nursery_searches -= 1
-                    print(dialogues.nursery['minigame_intro'])
-                    input('')
-                    self.nursery_minigame_result = minigames.Minigames().cryptic()
-                else:
-                    print(colored('Sorry, you have no more searches available for this room.','red'))
+        config = settings.room_config[self.current_location]
+
+        if config['searches'] > 0:
+            self.searching = True
+            config['searches'] -= 1
+            print(config['searches'])
+            print(dialogues.rooms[self.current_location]['minigame_intro'])
+            input('')
+            game_to_run = getattr(self.minigame, config['minigame'])
+            self.minigame_result = game_to_run()
+        else:
+            print(colored('Sorry, you have no more searches available for this room.','red'))
 
 # == BTS ==
 # TECHNICALITIES
     def display_actions(self):
         print('    What would you like to do? ', end='')
-
-        match self.current_location:
-            case 'foyer': print(colored(f'Searches Remaining: {self.foyer_searches}\n', 'yellow'))
-            case 'study': print(colored(f'Searches Remaining: {self.study_searches}\n', 'yellow'))
-            case 'bedroom': print(colored(f'Searches Remaining: {self.bedroom_searches}\n', 'yellow'))
-            case 'kitchen': print(colored(f'Searches Remaining: {self.kitchen_searches}\n', 'yellow'))
-            case 'library': print(colored(f'Searches Remaining: {self.library_searches}\n', 'yellow'))
-            case 'nursery': print(colored(f'Searches Remaining: {self.nursery_searches}\n', 'yellow'))
+        print(colored(f"Searches Remaining: {settings.room_config[self.current_location]['searches']}\n", 'yellow'))
 
         # Print actions
         for actions in self.actions:
@@ -274,8 +186,7 @@ class Story:
                 print(colored('That room does not exist to your knowledge. Please choose another room.','red'))
 
     def enter_room(self, room):
-        # different per character
-        pass
+        self.rooms(room)
 
 # ACCUSATIONS
     def accuse_confirmation(self):
@@ -293,8 +204,10 @@ class Story:
                 print(colored('Invalid input. Please answer with \'y\' or \'n\'.', 'red'))
 
     def accuse(self):
+        clues_found = self.found_brochure and self.found_gloves and self.found_socks
+
         while True:
-            if self.found_glove and self.found_brochure:
+            if clues_found:
                 choice = input(dialogues.accuse['with lily']).lower()
             else:
                 choice = input(dialogues.accuse['without lily']).lower()
@@ -305,7 +218,7 @@ class Story:
             elif choice == 'elara' or choice == '2':
                 print('Wrong choice!')
                 self.replay()
-            elif (choice == 'lily' or choice == '3') and self.found_brochure and self.found_glove:
+            elif (choice == 'lily' or choice == '3') and clues_found:
                 print('Congratulations, you picked the right killer.')
                 self.replay()
             else:

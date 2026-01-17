@@ -1,5 +1,26 @@
+import sys
+import time
+
 # Print speed
 print_speed = 0
+
+def slow_print(*args, **kwargs):
+    # Extract speed settings if provided, otherwise use defaults
+    speed = kwargs.pop('speed', print_speed)
+    sep = kwargs.pop('sep', ' ')
+    end = kwargs.pop('end', '\n')
+    
+    # Combine all arguments into one string (mimicking standard print)
+    message = sep.join(map(str, args))
+    
+    for char in message:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(speed)
+    
+    # Print the ending (usually a newline)
+    sys.stdout.write(end)
+    sys.stdout.flush()
 
 room_config = {
     'foyer': {
@@ -26,16 +47,32 @@ room_config = {
         'unlocks': 'nursery'
     },
     'kitchen': {
-        'minigame': 'riddle',
+        'minigame': 'riddles',
         'searches': 3,
         'isKeyRoom': False
     },
     'nursery': {
         'minigame': 'cryptic',
         'searches': 3,
-        'isKeyRoom': False
+        'isKeyRoom': False,
+        'isHidden': True
+    },
+    'games room': {
+        'minigame': 'cryptic',
+        'searches': 1,
+        'isKeyRoom': True,
+        'keyClue': 'found_socks',
+        'unlocks': 'garage'
+    },
+    'garage': {
+        'minigame': 'cryptic',
+        'searches': 2,
+        'isKeyRoom': False,
+        'isHidden': True
     }
 }
+
+print(room_config.get('foyer'))
 
 # Limit
 searches = 3

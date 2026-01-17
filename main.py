@@ -1,28 +1,9 @@
 from termcolor import colored
 import os
-import sys
-import time
 
 import settings
 import character_story
-
-def print(*args, **kwargs):
-    # Extract speed settings if provided, otherwise use defaults
-    speed = kwargs.pop('speed', settings.print_speed)
-    sep = kwargs.pop('sep', ' ')
-    end = kwargs.pop('end', '\n')
-    
-    # Combine all arguments into one string (mimicking standard print)
-    message = sep.join(map(str, args))
-    
-    for char in message:
-        sys.stdout.write(char)
-        sys.stdout.flush()
-        time.sleep(speed)
-    
-    # Print the ending (usually a newline)
-    sys.stdout.write(end)
-    sys.stdout.flush()
+from settings import slow_print as print
 
 class Main:
     def __init__(self):
@@ -53,7 +34,7 @@ class Main:
                 self.story = character_story.StoryParanormal()
                 break
             elif char_choice == 'investigator' or char_choice == 'the investigator' or char_choice == '2' or char_choice == 'the private investigator' or char_choice == 'private investigator':
-                self.story = character_story.StoryPrivateInvestigator()
+                self.story = character_story.StoryInvestigator()
                 break
             elif char_choice == 'buyer' or char_choice == 'the buyer' or char_choice == '3':
                 self.story = character_story.StoryBuyer()
