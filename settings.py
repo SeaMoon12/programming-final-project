@@ -22,14 +22,45 @@ def type_writer_print(*args, **kwargs):
     sys.stdout.write(end)
     sys.stdout.flush()
 
+room_config = {
+    'foyer': {
+        'minigame': 'anagram',
+        'searches': 3,
+        'isKeyRoom': False,
+    },
+    'study': {
+        'minigame': 'numbrle',
+        'searches': 3,
+        'isKeyRoom': True,
+        'keyClue': 'found_brochure'
+    },
+    'bedroom': {
+        'minigame': 'wordle',
+        'searches': 3,
+        'isKeyRoom': False
+    },
+    'library': {
+        'minigame': 'hangman',
+        'searches': 3,
+        'isKeyRoom': True,
+        'keyClue': 'found_glove',
+        'unlocks': 'nursery'
+    },
+    'kitchen': {
+        'minigame': 'riddles',
+        'searches': 3,
+        'isKeyRoom': False
+    },
+    'nursery': {
+        'minigame': 'cryptic',
+        'searches': 3,
+        'isKeyRoom': False,
+        'isHidden': True
+    }
+}
+
 # Limit
 searches = 3
-foyer_searches = 3
-study_searches = 3
-bedroom_searches = 3
-kitchen_searches = 3
-library_searches = 3
-nursery_searches = 3
 investigator_searches = 1
 
 # Settings for minigames
