@@ -28,9 +28,10 @@ def print(*args, **kwargs):
 
 # If there are events that may happen, this class will allow these events to happen based on the character chosen
 class StoryParanormal(mainstory.Story):
-    def __init__(self):
-        self.role = 'paranormal'
-        super().__init__()
+
+    def introduction(self):
+        super().introduction()
+        self.rooms('foyer', dialogues.foyer['introduction'], dialogues.foyer['success']['paranormal'], dialogues.foyer['fail'])
 
     def enter_room(self, room):
         match room:
@@ -44,8 +45,11 @@ class StoryParanormal(mainstory.Story):
 class StoryPrivateInvestigator(mainstory.Story):
     def __init__(self):
         self.special_use = settings.investigator_searches
-        self.role = 'investigator'
         super().__init__()
+
+    def introduction(self):
+        super().introduction()
+        self.rooms('foyer', dialogues.foyer['introduction'], dialogues.foyer['success']['investigator'], dialogues.foyer['fail'])
 
     def enter_room(self, room):
         match room:
@@ -66,14 +70,13 @@ class StoryPrivateInvestigator(mainstory.Story):
                 self.kitchen_minigame_result = False
                 self.library_minigame_result = False
 
-                self.searching = False
-                choice = input(f'''Use Authority Check? (Remaining: {self.special_use})''').lower()
+                choice = input(f'''Use Authority Check? (Remaining: {self.special_use}) (y/n)''').lower()
                 if choice == 'y' or choice == 'yes':
                     self.special_use -= 1
                     match self.current_location:
                         # FOYER
                         case 'foyer':
-                            print(dialogues.foyer['investigator_special'])
+                            print(dialogues.foyer['success']['investigator_special'])
                             input('')
                             break
 
@@ -86,29 +89,35 @@ class StoryPrivateInvestigator(mainstory.Story):
                         # BEDROOM
                         case 'bedroom':
                             print(dialogues.bedroom['success']['investigator_special'])
+                            input('')
 
                         # KITCHEN
                         case 'kitchen':
                             print(dialogues.kitchen['success']['investigator_special'])
+                            input('')
 
                         # LIBRARY
                         case 'library':
                             print(dialogues.library['success']['investigator_special'])
                             input('')
                             break
+                    self.searching = False
                 elif choice == 'n' or choice == 'no':
+                    self.searching = False
                     break
                 else:
-                    print('Please answer with \'yes\' or \'no\'.')
+                    print(colored('\nPlease answer with \'yes\' or \'no\'.\n','red'))
+                    continue
             else:
                 break
                     
         super().display_rooms()
 
 class StoryBuyer(mainstory.Story):
-    def __init__(self):
-        self.role = 'buyer'
-        super().__init__()
+
+    def introduction(self):
+        super().introduction()
+        self.rooms('foyer', dialogues.foyer['introduction'], dialogues.foyer['success']['buyer'], dialogues.foyer['fail'])
 
     def enter_room(self, room):
         match room:

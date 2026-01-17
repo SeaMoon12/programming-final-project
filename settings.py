@@ -9,7 +9,7 @@ bedroom_searches = 3
 kitchen_searches = 3
 library_searches = 3
 nursery_searches = 3
-investigator_searches = 100
+investigator_searches = 1
 
 # Settings for minigames
 numbrle_chances = 10

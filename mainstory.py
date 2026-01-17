@@ -29,8 +29,6 @@ def print(*args, **kwargs):
 # This will be the main storyline, choices that do not depend on the character chosen
 class Story:
     def __init__(self):
-        self.role = None
-
         self.all_locations = ['foyer', 'study', 'bedroom', 'library', 'kitchen']
         self.visited_locations = ['foyer']
         self.current_location = ''
@@ -67,8 +65,8 @@ class Story:
 
         print(dialogues.newspaper)
         input('')
-        self.rooms('foyer', dialogues.foyer['introduction'], dialogues.foyer['success']['paranormal'], dialogues.foyer['fail'])
 
+# FUNCTION FOR ROOMS
     def rooms(self, current_location, introduction_dialogue, success_dialogue, fail_dialogue):
         os.system('cls')
         self.current_location = current_location
@@ -271,8 +269,6 @@ class Story:
                 self.visited_locations = self.all_locations
             elif room == 'display number of rooms':
                 print(len(self.all_locations))
-            elif room == 'show evidence':
-                print(self.key_evidence)
 
             else:
                 print(colored('That room does not exist to your knowledge. Please choose another room.','red'))
@@ -288,7 +284,6 @@ class Story:
         while choice != 'y' or 'n':
             choice = input('Would you like to accuse now? (y/n)\n')
             if choice == 'y':
-                print('Accusing')
                 self.accuse()
             elif choice == 'n':
                 self.visited_locations = []
@@ -300,22 +295,9 @@ class Story:
     def accuse(self):
         while True:
             if self.found_glove and self.found_brochure:
-                choice = input('''
-        Who would you like to accuse?
-
-            1. Arthur
-            2. Elara
-            3. Lily
-                
-        ''').lower()
+                choice = input(dialogues.accuse['with lily']).lower()
             else:
-                choice = input('''
-        Who would you like to accuse?
-
-            1. Arthur
-            2. Elara
-                
-        ''').lower()
+                choice = input(dialogues.accuse['without lily']).lower()
 
             if choice == 'arthur' or choice == '1':
                 print('Wrong choice!')
@@ -331,7 +313,7 @@ class Story:
                 continue
 
     def replay(self):
-        choice = input('Would you like to try again?')
+        choice = input('Would you like to try again? (y/n)\n')
         if choice == 'y' or choice == 'yes':
             main.Main()
         else:

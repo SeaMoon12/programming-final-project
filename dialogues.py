@@ -273,6 +273,20 @@ nursery = {
         \n    PRESS ENTER TO CONTINUE'''
 }
 
+accuse = {
+    'without lily': '''Who would you like to accuse?
+
+    1. Arthur
+    2. Elara
+    \n''',
+    'with lily': '''Who would you like to accuse?
+
+    1. Arthur
+    2. Elara
+    3. Lily
+    \n'''
+}
+
 newspaper = '''
     THE BLACKWOOD GAZETTE
     Vol. LXVIII - No. 242 | Tuesday, October 14, 2010 | Price: £1.50
