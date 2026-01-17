@@ -11,7 +11,7 @@ from settings import type_writer_print as print
 class StoryParanormal(mainstory.Story):
     pass
 
-class StoryPrivateInvestigator(mainstory.Story):
+class StoryInvestigator(mainstory.Story):
     def __init__(self):
         self.special_use = settings.investigator_searches
         super().__init__()

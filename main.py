@@ -34,7 +34,7 @@ class Main:
                 self.story = character_story.StoryParanormal()
                 break
             elif char_choice == 'investigator' or char_choice == 'the investigator' or char_choice == '2' or char_choice == 'the private investigator' or char_choice == 'private investigator':
-                self.story = character_story.StoryPrivateInvestigator()
+                self.story = character_story.StoryInvestigator()
                 break
             elif char_choice == 'buyer' or char_choice == 'the buyer' or char_choice == '3':
                 self.story = character_story.StoryBuyer()
