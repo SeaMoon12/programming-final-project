@@ -64,7 +64,7 @@ class Story:
                 if config.get('isKeyRoom'):
                     setattr(self, config['keyClue'], True)
 
-                if 'unlocks' in config:
+                if 'unlocks' in config and character == 'buyer':
                     self.all_locations.append(config['unlocks'])
                     print(colored(f"New Location Unlocked: {config['unlocks'].capitalize()}\n", 'green'))
             
@@ -81,7 +81,6 @@ class Story:
         if config['searches'] > 0:
             self.searching = True
             config['searches'] -= 1
-            print(config['searches'])
             print(dialogues.rooms[self.current_location]['minigame_intro'])
             input('')
             game_to_run = getattr(self.minigame, config['minigame'])
