@@ -1,28 +1,9 @@
 from termcolor import colored
 import os
-import sys
-import time
 
 import settings
 import character_story
-
-def print(*args, **kwargs):
-    # Extract speed settings if provided, otherwise use defaults
-    speed = kwargs.pop('speed', settings.print_speed)
-    sep = kwargs.pop('sep', ' ')
-    end = kwargs.pop('end', '\n')
-    
-    # Combine all arguments into one string (mimicking standard print)
-    message = sep.join(map(str, args))
-    
-    for char in message:
-        sys.stdout.write(char)
-        sys.stdout.flush()
-        time.sleep(speed)
-    
-    # Print the ending (usually a newline)
-    sys.stdout.write(end)
-    sys.stdout.flush()
+from settings import type_writer_print as print
 
 class Main:
     def __init__(self):

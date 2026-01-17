@@ -1,5 +1,26 @@
+import sys
+import time
+
 # Print speed
 print_speed = 0
+
+def type_writer_print(*args, **kwargs):
+    # Extract speed settings if provided, otherwise use defaults
+    speed = kwargs.pop('speed', print_speed)
+    sep = kwargs.pop('sep', ' ')
+    end = kwargs.pop('end', '\n')
+    
+    # Combine all arguments into one string (mimicking standard print)
+    message = sep.join(map(str, args))
+    
+    for char in message:
+        sys.stdout.write(char)
+        sys.stdout.flush()
+        time.sleep(speed)
+    
+    # Print the ending (usually a newline)
+    sys.stdout.write(end)
+    sys.stdout.flush()
 
 # Limit
 searches = 3

@@ -1,30 +1,12 @@
 from termcolor import colored
 import os
 import sys
-import time
 
 import main
 import settings
 import dialogues
 import minigames
-
-def print(*args, **kwargs):
-    # Extract speed settings if provided, otherwise use defaults
-    speed = kwargs.pop('speed', settings.print_speed)
-    sep = kwargs.pop('sep', ' ')
-    end = kwargs.pop('end', '\n')
-    
-    # Combine all arguments into one string (mimicking standard print)
-    message = sep.join(map(str, args))
-    
-    for char in message:
-        sys.stdout.write(char)
-        sys.stdout.flush()
-        time.sleep(speed)
-    
-    # Print the ending (usually a newline)
-    sys.stdout.write(end)
-    sys.stdout.flush()
+from settings import type_writer_print as print
 
 # This will be the main storyline, choices that do not depend on the character chosen
 class Story:
@@ -46,12 +28,12 @@ class Story:
         self.nursery_searches = settings.nursery_searches
 
         # RESULTS FOR THE MINIGAME
-        self.foyer_minigame_result = None
-        self.study_minigame_result = None
-        self.bedroom_minigame_result = None
-        self.kitchen_minigame_result = None
-        self.library_minigame_result = None
-        self.nursery_minigame_result = None
+        self.foyer_minigame_result = False
+        self.study_minigame_result = False
+        self.bedroom_minigame_result = False
+        self.kitchen_minigame_result = False
+        self.library_minigame_result = False
+        self.nursery_minigame_result = False
 
         # Key Evidence - If player don't have 2, cannot accuse Lily.
         self.found_glove = False
