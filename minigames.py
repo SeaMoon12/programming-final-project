@@ -279,48 +279,29 @@ class Minigames:
         return False
 
     def cryptic(self):
-        def get_atbash_cipher(text):
-            result = ""
-            for char in text.upper():
-                if 'A' <= char <= 'Z':
-                    
-            result += reversed_char
-        else:
-            result += char
-    return result
+        puzzles = {
+        "PRMTWLN": "KINGDOM",
+        "ULIVEVI": "FOREVER",
+        "XLMGILO": "CONTROL"}
 
-def play_nursery_puzzle():
-    # 1. The specific answers you requested
-    answers = ["KINGDOM", "FOREVER", "CONTROL"]
-    
-    # 2. Randomly pick one answer
-    target_answer = random.choice(answers)
-    
-    # 3. Create the question by reversing the alphabet of the answer
-    # If the answer is 'KINGDOM', the question shown to the player is 'PRMTWLN'
-    cryptic_question = get_atbash_cipher(target_answer)
+        code = random.choice(list(puzzles.keys()))
+        answer = puzzles[code]
 
-    print("\n" + "="*50)
-    print("      --- THE NURSERY DIARY CIPHER ---")
-    print("="*50)
-    print(f"\nAcross the dusty page, the letters are mirrored...")
-    print(f"ENCRYPTED TEXT: {cryptic_question}")
-    print("\n(Hint: The girl saw the world in reverse. A=Z, B=Y...)")
+        print(f'''        Decode the word: {code}.
+        You only have 5 chances to guess the word, if you  fail  you  won't  be
+        able to obtain the clue.Think wisely before answering, the fate  is  in
+        your hand
+        ''')
 
-    # 4. User Input
-    attempt = input("\nDecode the truth: ").strip().upper()
+        guess = input("Answer: ").strip().upper()
 
-    if attempt == target_answer:
-        print("\n[SUCCESS] The lock clicks. The diary yields its secrets.")
-        # Trigger the Success Narration here
-        return True
-    else:
-        print("\n[FAILURE] The letters scramble. Your mind is too tired to see.")
-        # Trigger the Failure Narration here
+        for chances in range(4):
+            if guess == answer:
+                print('CORRECT')
+                return True
+            elif guess != answer:
+                guess = input(colored('The answer is still incorrect, try again:\n','red'))
         return False
-
-# Start the game
-play_nursery_puzzle()
 
     def riddles(self):
         riddles_list = [
