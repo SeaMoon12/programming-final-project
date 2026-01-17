@@ -18,6 +18,7 @@ class Story:
         self.searching = False
 
         self.actions = ['continue', 'deep search']
+        self.can_search = False
 
         # SEARCH LIMITS
         self.foyer_searches = settings.foyer_searches
@@ -66,10 +67,10 @@ class Story:
             case 'library': minigame_result = self.library_minigame_result
             case 'nursery': minigame_result = self.nursery_minigame_result
 
-        if minigame_result == True and (self.current_location != 'library' and self.current_location != 'study'):
+        if minigame_result == True and (self.current_location != 'library' and self.current_location != 'study') and self.can_search:
             print(success_dialogue)
             input('')
-        elif minigame_result == False and (self.current_location != 'library' and self.current_location != 'study'):
+        elif minigame_result == False and (self.current_location != 'library' and self.current_location != 'study') and self.can_search:
             print(fail_dialogue)
 
         # IF LIBRARY (for obtain key clue)
@@ -109,6 +110,7 @@ class Story:
                     self.foyer_minigame_result = minigames.Minigames().anagram()
                 else:
                     print(colored('Sorry, you have no more searches available for this room.','red'))
+                    self.can_search = False
             case 'study':
                 if self.study_searches > 0:
                     self.study_searches -= 1
@@ -117,6 +119,7 @@ class Story:
                     self.study_minigame_result = minigames.Minigames().numbrle()
                 else:
                     print(colored('Sorry, you have no more searches available for this room.','red'))
+                    self.can_search = False
             case 'bedroom':
                 if self.bedroom_searches > 0:
                     self.bedroom_searches -= 1
@@ -125,6 +128,7 @@ class Story:
                     self.bedroom_minigame_result = minigames.Minigames().wordle()
                 else:
                     print(colored('Sorry, you have no more searches available for this room.','red'))
+                    self.can_search = False
             case 'library':
                 if self.library_searches > 0:
                     self.library_searches -= 1
@@ -133,6 +137,7 @@ class Story:
                     self.library_minigame_result = minigames.Minigames().hangman()
                 else:
                     print(colored('Sorry, you have no more searches available for this room.','red'))
+                    self.can_search = False
             case 'kitchen':
                 if self.kitchen_searches > 0:
                     self.kitchen_searches -= 1
@@ -141,6 +146,7 @@ class Story:
                     self.kitchen_minigame_result = minigames.Minigames().riddles()
                 else:
                     print(colored('Sorry, you have no more searches available for this room.','red'))
+                    self.can_search = False
             case 'nursery':
                 if self.nursery_searches > 0:
                     self.nursery_searches -= 1
@@ -149,6 +155,7 @@ class Story:
                     self.nursery_minigame_result = minigames.Minigames().cryptic()
                 else:
                     print(colored('Sorry, you have no more searches available for this room.','red'))
+                    self.can_search = False
 
 # == BTS ==
 # TECHNICALITIES
