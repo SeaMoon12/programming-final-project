@@ -11,7 +11,6 @@ class Main:
 
     def character_selection(self):
         while True:
-            os.system('cls')
             print('''
     Who do you want to play as?
         1. The Paranormal

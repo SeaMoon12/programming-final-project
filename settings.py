@@ -72,4 +72,4 @@ wordle_answer = 'plant'
 numbrle_answer = 4261
 anagram_answer = 'stature'
 cryptic_answer = None
-riddle_answer = ['liquor flask', 'knife', 'sugar']
+riddles_answer = ['liquor flask', 'knife', 'sugar']

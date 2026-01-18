@@ -1,3 +1,5 @@
+from termcolor import colored
+
 rooms = {
     'foyer': {
         'introduction':
@@ -270,6 +272,60 @@ rooms = {
         malice in the room. You slam the book shut, but the feeling  of  being
         watched remains.
         \n    PRESS ENTER TO CONTINUE'''
+    }
+}
+
+minigames = {
+    'hangman': {
+        'instructions': 
+        '''        Welcome to Hangman. Please enter one letter to make a  guess.  Do  not
+        enter numbers or any other special symbols.
+        ''',
+        'letter_error': colored('\nPlease enter one(1) letter.\n','red'),
+        'guessed_already_error': colored('\nYou already guessed this letter!\n','red')
+    },
+    'wordle': {
+        'instructions': 
+        '''        Welcome to Wordle. Please enter a 5-letter word to make a  guess.  You
+        have 6 attempts. Do not use repeating letters. It's your loss  if  you
+        do.
+        ''',
+        'no_word_error': colored('\nInvalid guess. Please enter a 5-letter English word.\n','red'),
+        'already_guessed_error': colored('\nInvalid guess. You already guessed this word.\n','red')
+    },
+    'numbrle': {
+        'instructions': 
+        '''        Welcome to Numbrle. Please enter a 4-digit number  with  no  repeating
+        numbers. You have 10 attempts.
+        ''',
+        'error': colored('\nPlease enter 4 different numbers.\n','red')
+    },
+    'anagram': {
+        'instructions': 
+        '''        Welcome to Anagram. Please unscramble this word to  an  English  word.
+
+                                    A-S-T-U-T-E-R
+
+        You have 5 attempts. if you  fail  you  won't  be able to  obtain  the
+        clue. Think wisely before answering, the fate is in your hands.
+        ''',
+        'error': colored('\nThe answer is still incorrect, try again: ','red')
+    },
+    'cryptic': {
+        'instructions':
+        '''        Welcome to Cryptic. Please decode the word to  an  English  word.  You
+        have 5 attempts. If you fail, you won't be able to  obtain  the  clue.
+        Think wisely before answering, the fate is in your hands.
+        ''',
+        'error': colored('The answer is still incorrect, try again: ','red')
+    },
+    'riddles': {
+        'instructions':
+        '''        Welcome to Riddles. Please answer the riddle. You have 5 attempts.  If
+        you fail, you won't be able to  obtain  the  clue. Think wisely before
+        answering, the fate is in your hands.
+        ''',
+        'error': colored('The answer is still incorrect, try again: ','red')
     }
 }
 

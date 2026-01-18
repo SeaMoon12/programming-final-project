@@ -1,6 +1,7 @@
 import random
 from termcolor import colored
 
+import dialogues
 import settings
 from settings import type_writer_print as print
 
@@ -9,25 +10,26 @@ class Minigames:
         pass
     
     def hangman(self):
+        print(dialogues.minigames['hangman']['instructions'])
         def making_a_guess():
             x = 0
             correct_guess = False
             for letter in chosen_word:
                 if len(guess) > 1 or guess not in 'qwertyuiopasdfghjklzxcvbnm':
                     #makes sure that you can only enter one letter, and makes sure that what you entered is actually a letter
-                    print ('please enter one(1) letter')
+                    print (dialogues.minigames['hangman']['letter_error'])
                     correct_guess = True
                     break
                 elif guess.lower() == chosen_word[x]:
                     if guess.lower()== blank_list [x]:
-                        print('You already guessed this letter!')
+                        print(dialogues.minigames['hangman']['guessed_already_error'])
                         correct_guess=True
         #im making it true here because False adds a line to the hanged man meanwhile true does nothing, its just easier to do it this way :3
                         break
                     blank_list[x] = guess.lower()
                     correct_guess = True
                 elif guess.lower() in wronglist:
-                    print('you already guessed this letter!')
+                    print(dialogues.minigames['hangman']['guessed_already_error'])
                     correct_guess=True 
                     break
                 x += 1
@@ -101,24 +103,22 @@ class Minigames:
         #----------------------------------------------------------------------------------------------
 
         print(HANGMANPICS[self.update_display])
-        guess = input(f"Welcome to hangman.\n{blank}\nMake a guess? ")
+        guess = input(f"Make a guess: ")
         making_a_guess()
         print(HANGMANPICS[self.update_display])
         print(''.join(blank_list))
         while self.update_display < 6:
             print(''.join(blank_list))
             if ''.join(blank_list) == chosen_word:
-                print("You have obtained a clue!")
                 return True 
             print('Wrong Letters: ')
             print(*wronglist, sep=', ')
 
-            guess = input("Make another guess? ")
+            guess = input("Make a guess: ")
             making_a_guess()
             print(HANGMANPICS[self.update_display])
             print(''.join(blank_list))
         if self.update_display == 6:
-            print("You failed to obtain the clue.")
             return False
 
     def wordle(self):
@@ -144,7 +144,7 @@ class Minigames:
             used_words.append (str)
             return str + '\033[0m'
         def wordle(guesses, answers):
-            print('Welcome to wordle! You have 6 attempts.')
+            print(dialogues.minigames['wordle']['instructions'])
             attempts = 1
             max_attempts = 6
             count = 1
@@ -159,13 +159,12 @@ class Minigames:
                 #because the remainder of 4%5= 4, 9%5 = 4, 14%5 =4
                 guess = input('\033[0mEnter Guess#'+str(attempts)+': ').lower()
                 if guess in invalid:
-                    print('Invalid Guess, you already guessed this word!')
+                    print(dialogues.minigames['wordle']['already_guessed_error'])
                     continue
                 if not is_valid_guess(guess, guesses):
-                    print('Invalid Guess, please enter an english word with 5 letters!')
+                    print(dialogues.minigames['wordle']['no_word_error'])
                     continue
                 if guess == answers:
-                    print('Congratulations, you got the clue!')
                     return True
                 invalid.append(guess)
                 feedback = evaluate_guess(guess, answers)
@@ -173,7 +172,6 @@ class Minigames:
                 
             
             if attempts > max_attempts:
-                print ('GAME OVER, YOU FAILED')
                 return False    
         guesses = []
         with open('guesses.txt', 'r') as file:
@@ -186,6 +184,7 @@ class Minigames:
         return wordle(guesses, answers)
 
     def numbrle(self):
+        print(dialogues.minigames['numbrle']['instructions'])
         chances = settings.numbrle_chances
         hasChance = True
         chanceCount = 0
@@ -202,8 +201,6 @@ class Minigames:
 
         while hasChance:
             if chanceCount == chances:
-                print("You have failed to guess the number.")
-                print(f'The number was {number}')
                 gameActive = False
                 return False
             else:
@@ -211,11 +208,11 @@ class Minigames:
                 try:
                     attempt = int(input('Please enter your number: '))
                 except:
-                    print('Please enter a distinct four-digit number.')
+                    print(dialogues.minigames['numbrle']['error'])
                     continue
 
                 if attempt > 9999 or attempt < 1000:
-                    print('Please enter a distinct four-digit number.')
+                    print(dialogues.minigames['numbrle']['error'])
                     continue
 
                 attempt1 = str(int(attempt/1000))
@@ -226,13 +223,12 @@ class Minigames:
                 attempts = [int(attempt1), int(attempt2), int(attempt3), int(attempt4)]
 
                 if len(set(attempts)) > 4 or len(set(attempts)) < 4:
-                    print('Please enter a distinct four-digit number.')
+                    print(dialogues.minigames['numbrle']['error'])
                     continue
 
                 chanceCount += 1
 
                 if attempt == number:
-                    print('You have won the game. Congratulations.')
                     return True
                 else:
                     for j in numbers:
@@ -249,9 +245,9 @@ class Minigames:
                         count += 1
                     
                     print(f'''
-        Your guess: {attempts}
-        {red} Red
-        {white} White
+        Your guess: {attempt}
+        There are {red} digit(s) in the correct position and {white} correct digit(s) in
+        the wrong position.
         {chances - chanceCount} attempts remaining.\n''')
 
             count = 0
@@ -262,20 +258,15 @@ class Minigames:
         answer_list = list(settings.anagram_answer.upper())
         random.shuffle(answer_list)
 
-        print(f'''        Turn these letters to make new existing word: {'-'.join(answer_list)}.
-        You only have 5 chances to guess the word, if you  fail  you  won't  be
-        able to obtain the clue.Think wisely before answering, the fate  is  in
-        your hand
-        ''')
+        print(dialogues.minigames['anagram']['instructions'])
 
         answer= input("Write your answer: ").lower()
 
         for chances in range(4):
             if answer == settings.anagram_answer:
-                print('CORRECT')
                 return True
             elif answer != settings.anagram_answer:
-                answer = input(colored('The answer is still incorrect, try again:\n','red'))
+                answer = input(dialogues.minigames['anagram']['error'])
         return False
 
     def cryptic(self):
@@ -287,41 +278,35 @@ class Minigames:
         code = random.choice(list(puzzles.keys()))
         answer = puzzles[code]
 
+        print(dialogues.minigames['cryptic']['instructions'])
         print(f'''        Decode the word: {code}.
-        You only have 5 chances to guess the word, if you  fail  you  won't  be
-        able to obtain the clue.Think wisely before answering, the fate  is  in
-        your hand
         ''')
 
         guess = input("Answer: ").strip().upper()
 
         for chances in range(4):
             if guess == answer:
-                print('CORRECT')
                 return True
             elif guess != answer:
-                guess = input(colored('The answer is still incorrect, try again:\n','red'))
+                guess = input(dialogues.minigames['cryptic']['error'])
         return False
 
     def riddles(self):
         riddles_list = [
-            ("I have a neck but no head, and I hold the spirit of Arthur. What am I?", settings.riddle_answer[0]),
-            ("I am sharp and deadly, used to cut and slice, found in the kitchen where the maid works. What am I?", settings.riddle_answer[1]),
-            ("I am small and sweet, spilled on the counter, near the flask of Arthur's favorite. What am I?", settings.riddle_answer[2])
+            ("I have a neck but no head, and I hold the spirit of Arthur. What am I?", settings.riddles_answer[0]),
+            ("I am sharp and deadly, used to cut and slice, found in the kitchen where the maid works. What am I?", settings.riddles_answer[1]),
+            ("I am small and sweet, spilled on the counter, near the flask of Arthur's favorite. What am I?", settings.riddles_answer[2])
         ]
         chosen_riddle, correct_answer = random.choice(riddles_list)
+        print(dialogues.minigames['riddles']['instructions'])
         print(f'''        {chosen_riddle}
-        You only have 5 chances to guess the riddle, if you  fail  you  won't  be
-        able to obtain the clue.Think wisely before answering, the fate  is  in
-        your hand
         ''')
 
         answer = input("Write your answer: ").lower()
 
         for chances in range(4):
             if answer == correct_answer:
-                print('CORRECT')
                 return True
             elif answer != correct_answer:
-                answer = input(colored('The answer is still incorrect, try again:\n','red'))
+                answer = input(dialogues.minigames['riddles']['error'])
         return False

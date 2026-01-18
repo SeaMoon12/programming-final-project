@@ -231,6 +231,7 @@ class Story:
     def replay(self):
         choice = input('Would you like to try again? (y/n)\n')
         if choice == 'y' or choice == 'yes':
+            os.system('cls')
             main.Main()
         else:
             sys.exit()
