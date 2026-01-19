@@ -17,10 +17,10 @@ rooms = {
         'success': {
             'paranormal':
                 '''
-        The air turns ice-cold. You hear a whisper: "He...  knelt...  but  the
-        shadow stood above us both.". You  notice  the  blood  splatter  stops
-        abruptly at three feet, suggesting someone was present who didn't  fit
-        the scale of the room.
+        The air turns ice-cold. You hear a  whisper: "He...  knelt...  begging
+        for gold..." You  notice  the   blood   splatter   stops  abruptly  at
+        three feet, suggesting someone was present who didn't  fit  the  scale
+        of the room.
         \n    PRESS ENTER TO CONTINUE''',
             'investigator':
                 '''
@@ -296,7 +296,7 @@ minigames = {
     'numbrle': {
         'instructions': 
         '''        Welcome to Numbrle. Please enter a 4-digit number  with  no  repeating
-        numbers. You have 10 attempts.
+        numbers. There is no 0 in the answer. You have 10 attempts.
         ''',
         'error': colored('\nPlease enter 4 different numbers.\n','red')
     },
@@ -341,6 +341,133 @@ accuse = {
     2. Elara
     3. Lily
     \n'''
+}
+
+ending = {
+    'paranormal': {
+        'arthur_narration': '''
+        The air vibrates with an old, jagged rage.  I  hear  Alistair’s  voice
+        crying out from the floorboards: 'He  knelt  before  me,  begging  for
+        gold, and when I refused, the shadow fell.' Arthur, you  were  at  his
+        feet, desperate and broken. You turned that desperation into  a  blade
+        to secure your inheritance!
+
+        PRESS ENTER TO CONTINUE''',
+        'arthur_result': '''
+        Arthur is led away, screaming his innocence.  You  sit  in  the  empty
+        foyer, but the "cleansing" fails. The temperature drops to freezing. A
+        soft, rhythmic thumping begins inside the walls—not a heartbeat, but a
+        steady,  crawling  movement.  Alistair’s  voice  whispers   a   final,
+        terrifying word: "Close..." You leave the house  feeling  like  you’ve
+        caught the wrong shadow.''',
+        'elara_narration': '''
+        The scent of bitter almonds is suffocating. I  hear  the  clink  of  a
+        ghostly  teacup  and  Alistair’s  sigh: 'A  spoonful  for  sleep...  a
+        spoonful for my escape.' Elara, you silenced him  so  you  could  find
+        your own freedom. You poured your guilt into that cup and watched  the
+        life fade from his eyes.
+        
+        PRESS ENTER TO CONTINUE''',
+        'elara_result': '''
+        Elara is arrested, looking more confused than guilty. As you lock  the
+        front door,  you  hear  a  faint,  melodic  humming  coming  from  the
+        ventilation shaft. You  check  every  room—they  are  all  empty.  You
+        realize the "escape" Alistair whispered about wasn't  Elara's.  You've
+        closed the case, but the house is louder than ever.''',
+        'lily_narration': '''
+        The whispers change. They aren't Alistair’s anymore. They  are  small,
+        sharp, and cold. I hear  a  young  voice  chanting: 'I’m  fixing  you,
+        Grandpa. I’m fixing the lock on your life.' You  didn' t  just  watch,
+        Lily. You were the spider in the vent. You used your family’s sins  to
+        hide your own masterpiece of murder.
+        
+        PRESS ENTER TO CONTINUE''',
+        'lily_result': '''
+        Lily steps out from a hidden panel, her eyes as dark as the vents.  As
+        they lead her away, Alistair’s voice gives one final,  clear  sigh  of
+        relief that echoes through the halls. The house  turns  warm  for  the
+        first time in eight years.
+        '''
+    },
+    'investigator': {
+        'arthur_narration': '''
+        Physics don't lie. I found your gambling debts and your  blood-stained
+        IOU. You were the last one seen fighting him. You cornered him in that
+        study to force his hand, and when he wouldn't sign his fortune over to
+        you, you ended the conversation permanently.
+
+        PRESS ENTER TO CONTINUE''',
+        'arthur_result': '''
+        Arthur is convicted. Weeks later, you’re  reviewing  the  crime  scene
+        photos. You notice a small, bloody handprint on the inside of the wall
+        vent—one you missed during the rush to arrest  Arthur.  It’s  far  too
+        small to be his. You stare at the photo, the realization chilling your
+        blood. Who else was in that room?''',
+        'elara_narration': '''
+        I found the arsenic and the suitcase.  You  drugged  your  husband  to
+        facilitate an affair and an escape to Paris. You’re  a  classic  Black
+        Widow, Elara. You used the sedative to make the kill easy while he was
+        too weak to fight back.
+        
+        PRESS ENTER TO CONTINUE''',
+        'elara_result': '''
+        Elara goes to prison. While  packing  your  kit,  you  find  a  single
+        knitting needle hidden deep inside the library wall-vent.  There’s  no
+        reason for it to be there. You compare  it  to  the  autopsy  report’s
+        description of the "thin, cylindrical wound." Your  heart  sinks.  You
+        solved a crime, but did you solve the murder?''',
+        'lily_narration': '''
+        I’ve seen many crime scenes, but this was a masterpiece of framing.  A
+        3-foot blood splatter. A knitting needle wound. Size 4  footprints  in
+        the dust. You used your family’s greed  as  a  smokescreen  while  you
+        moved through the walls. You’re not a bystander, Lily—you’re a
+        professional.
+        
+        PRESS ENTER TO CONTINUE''',
+        'lily_result': '''
+        Lily is taken to a high-security psych ward. You burn your notes.  You
+        tell the Buyer to tear the house down; some structures are too  rotten
+        to save, and some secrets should remain buried in the rubble.'''
+    },
+    'buyer': {
+        'arthur_narration': '''
+        I’m broke because of this family! My blueprints show you had access to
+        the study through the foyer. You killed him for  an  inheritance  that
+        doesn't even exist anymore. Get out of my house so I can finally  have
+        some peace!
+        
+        PRESS ENTER TO CONTINUE''',
+        'arthur_result': '''
+        Arthur is arrested. You spend your first night in the manor,  but  the
+        house won't stay quiet. You hear the dumbwaiter moving in  the  middle
+        of the night. When you check the kitchen,  a  single  chair  has  been
+        moved to face the wall vent. You feel a pair of eyes on your back. You
+        caught the killer... so why do you feel like prey?''',
+        'elara_narration': '''
+        The dumbwaiter gave you away. I found the pills you used to  drug  him
+        in the shaft. You killed him so you could run away  with  your  lover,
+        and now I’m stuck with the bill for your  crime!  You’ve  ruined  this
+        house!
+        
+        PRESS ENTER TO CONTINUE''',
+        'elara_result': '''
+        Elara is led away by police. You finally sit down to  dinner  in  your
+        new home, but you notice the silver salt shaker  is  missing.  Then  a
+        fork. Then a knife. You  find  them  later,  arranged  in  a  strange,
+        geometric pattern inside the Library vent. You start to wonder if  the
+        "crazy family" actually left.''',
+        'lily_narration': '''
+        I found your diary in the room that wasn't on the public record. I saw
+        the architectural sketches. You’ve been living in my walls  for  eight
+        years. You used the vents to kill Alistair and frame your own parents.
+        This isn't your kingdom anymore—it's mine.
+        PRESS ENTER TO CONTINUE''',
+        'lily_result': '''
+        Lily is removed from the house. You sit in the  quiet  Foyer,  finally
+        safe. You realize why the house was so cheap: it wasn't the ghosts, it
+        was the fact that the house itself was designed to hide a monster. You
+        seal the vents with cement and finally sleep.'''
+    }
 }
 
 newspaper = '''

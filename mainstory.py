@@ -207,7 +207,8 @@ class Story:
                 print(colored('Invalid input. Please answer with \'y\' or \'n\'.', 'red'))
 
     def accuse(self):
-        clues_found = self.found_brochure and self.found_gloves
+        clues_found = self.found_brochure and self.found_glove
+        character = self.__class__.__name__.replace('Story','').lower()
 
         while True:
             if clues_found:
@@ -216,13 +217,19 @@ class Story:
                 choice = input(dialogues.accuse['without lily']).lower()
 
             if choice == 'arthur' or choice == '1':
-                print('Wrong choice!')
+                print(dialogues.ending[character]['arthur_narration'])
+                input('')
+                print(dialogues.ending[character]['arthur_result'])
                 self.replay()
             elif choice == 'elara' or choice == '2':
-                print('Wrong choice!')
+                print(dialogues.ending[character]['elara_narration'])
+                input('')
+                print(dialogues.ending[character]['elara_result'])
                 self.replay()
             elif (choice == 'lily' or choice == '3') and clues_found:
-                print('Congratulations, you picked the right killer.')
+                print(dialogues.ending[character]['lily_narration'])
+                input('')
+                print(dialogues.ending[character]['lily_result'])
                 self.replay()
             else:
                 print('Invalid Choice. Please enter according to the options provided.')
