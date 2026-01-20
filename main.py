@@ -10,9 +10,7 @@ class Main:
         self.character_selection()
 
     def character_selection(self):
-        while True:
-            os.system('cls')
-            print('''
+        print('''
     Who do you want to play as?
         1. The Paranormal
             Difficulty      : Easy
@@ -28,19 +26,19 @@ class Main:
             Difficulty      : Hard
             Unique Ability  : Blueprint Access
             Can find secret passages and evaluate the layout of the manor
-''')
+            ''')
+        while True:
             char_choice = input('').lower()
             if char_choice == 'paranormal' or char_choice ==  'the paranormal' or char_choice ==  '1':
                 self.story = character_story.StoryParanormal()
                 break
             elif char_choice == 'investigator' or char_choice == 'the investigator' or char_choice == '2' or char_choice == 'the private investigator' or char_choice == 'private investigator':
-                self.story = character_story.StoryPrivateInvestigator()
+                self.story = character_story.StoryInvestigator()
                 break
             elif char_choice == 'buyer' or char_choice == 'the buyer' or char_choice == '3':
                 self.story = character_story.StoryBuyer()
                 break
             else:
-                os.system('cls')
                 print(colored('Invalid character. Please try again.', 'red'))
 
 
