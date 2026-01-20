@@ -39,7 +39,7 @@ class Minigames:
                 self.update_display += 1
             x = 0
 
-
+# HANGMAN PICS
         HANGMANPICS = ['''
           +---+
           |   |
@@ -90,6 +90,7 @@ class Minigames:
               |
         =========''']
 
+# HANGMAN
         chosen_word = settings.hangman_answer
 
         blank = ""
@@ -121,6 +122,7 @@ class Minigames:
         if self.update_display == 6:
             return False
 
+# MINIGAMES
     def wordle(self):
         def is_valid_guess(guess, guesses):
             return guess in guesses
@@ -151,12 +153,8 @@ class Minigames:
             top = 5
             while attempts <= max_attempts:
                 print('_________________\nUsed Words:')
-                for i, a in enumerate(used_words):
-                    print (a), 
-                    if i % 5 == 4: 
-                        print ('\n')
-                #the i is the index starting from zero and a is the value of that index, i % 5 == 4 essentially means that every 5 items its going to make a \n (new row)
-                #because the remainder of 4%5= 4, 9%5 = 4, 14%5 =4
+                for word in used_words:
+                    print (word)
                 guess = input('\033[0mEnter Guess#'+str(attempts)+': ').lower()
                 if guess in invalid:
                     print(dialogues.minigames['wordle']['already_guessed_error'])
@@ -215,14 +213,14 @@ class Minigames:
                     print(dialogues.minigames['numbrle']['error'])
                     continue
 
-                attempt1 = str(int(attempt/1000))
-                attempt2 = str(int(attempt / 100) - (int(attempt / 1000) * 10))
-                attempt3 = str(int(attempt / 10) - (int(attempt / 100) * 10))
-                attempt4 = str(int(attempt) - (int(attempt / 10) * 10))
+                attempt1 = int(attempt/1000)
+                attempt2 = int(attempt / 100) - (int(attempt / 1000) * 10)
+                attempt3 = int(attempt / 10) - (int(attempt / 100) * 10)
+                attempt4 = int(attempt) - (int(attempt / 10) * 10)
 
-                attempts = [int(attempt1), int(attempt2), int(attempt3), int(attempt4)]
+                attempts = [attempt1, attempt2, attempt3, attempt4]
 
-                if len(set(attempts)) > 4 or len(set(attempts)) < 4:
+                if len(attempts) > 4 or len(attempts) < 4:
                     print(dialogues.minigames['numbrle']['error'])
                     continue
 
@@ -310,3 +308,8 @@ class Minigames:
             elif answer != correct_answer:
                 answer = input(dialogues.minigames['riddles']['error'])
         return False
+
+if __name__ == '__main__':
+    minigame = Minigames()
+    minigame.hangman()
+    test= ''
